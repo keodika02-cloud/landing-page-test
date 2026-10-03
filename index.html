@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Herbvian | Pure Plant-Based Loofah Essentials - Sustainable & Zero-Waste</title>
+  <meta name="description" content="Herbvian offers 100% natural, organic loofah products grown in Vietnam and crafted for everyday eco-living. Shower scrubbers, zero-waste kitchen sponges, and body care.">
+  <meta name="keywords" content="Herbvian, natural loofah, organic loofah sponge, loofah back scrubber, zero waste kitchen sponge, eco friendly bath, biodegradable loofah">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Herbvian | Pure Plant-Based Loofah Essentials">
+  <meta property="og:description" content="Sustainable and eco-friendly products made from natural plant-based materials. Origin: Vietnam.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Announcement Bar (Full-Width Global Shipping & Voucher) -->
+  <div class="announcement-bar">
+    <div class="announcement-inner">
+      <div class="announcement-promo">
+        <span>🌿 <strong>EARTH MONTH SPECIAL:</strong> Get 15% OFF your first order with code <code>HERBVIAN15</code> | Free Worldwide Shipping on orders $45+</span>
+      </div>
+      <div class="announcement-links">
+        <div class="country-currency-picker" id="currencyPicker">
+          <i class="fa-solid fa-globe"></i>
+          <select id="currencySelect" onchange="changeCurrency(this.value)">
+            <option value="USD">🇺🇸 United States (USD $)</option>
+            <option value="CAD">🇨🇦 Canada (CAD $)</option>
+            <option value="EUR">🇪🇺 Europe (EUR €)</option>
+            <option value="GBP">🇬🇧 United Kingdom (GBP £)</option>
+            <option value="VND">🇻🇳 Vietnam (VND ₫)</option>
+          </select>
+        </div>
+        <a href="#track-order" onclick="switchNav('track-order')"><i class="fa-solid fa-truck-fast"></i> Track Order</a>
+        <a href="tel:+18156699699"><i class="fa-solid fa-phone"></i> +1 815-669-9699</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-container">
+      <!-- Brand Logo: Herbvian -->
+      <a href="#home" class="brand-logo" onclick="switchNav('home')">
+        <div class="logo-icon">
+          <i class="fa-solid fa-leaf"></i>
+        </div>
+        <div class="logo-text">
+          <span class="logo-title">Herbvian</span>
+          <span class="logo-slogan">Pure Plant-Based Essentials</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="main-nav" id="mainNav">
+        <button class="nav-link active" data-page="home" onclick="switchNav('home')">
+          <i class="fa-solid fa-house"></i> Home
+        </button>
+        <button class="nav-link" data-page="product" onclick="switchNav('product')">
+          <i class="fa-solid fa-spray-can-sparkles"></i> Products
+        </button>
+        <button class="nav-link" data-page="blogs" onclick="switchNav('blogs')">
+          <i class="fa-solid fa-book-open-reader"></i> Our Story & Blogs
+        </button>
+        <button class="nav-link" data-page="track-order" onclick="switchNav('track-order')">
+          <i class="fa-solid fa-location-dot"></i> Track Order
+        </button>
+        <button class="nav-link" data-page="contact" onclick="switchNav('contact')">
+          <i class="fa-solid fa-envelope"></i> Contact Us
+        </button>
+      </nav>
+
+      <!-- Header Action Controls -->
+      <div class="header-actions">
+        <!-- Search Trigger -->
+        <button class="icon-btn" id="searchToggle" title="Search products">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+
+        <!-- Account / Login Button -->
+        <div class="user-account-wrapper">
+          <button class="user-btn" id="userBtn" title="My Account">
+            <i class="fa-regular fa-user"></i>
+            <span class="user-name-display" id="navUserName">Sign In</span>
+            <i class="fa-solid fa-chevron-down" style="font-size: 0.72rem; margin-left: 2px;"></i>
+          </button>
+          
+          <!-- Dropdown menu when logged in / logged out -->
+          <div class="account-dropdown" id="accountDropdown">
+            <div id="dropdownLoggedOut">
+              <p class="dropdown-greeting">Welcome to Herbvian!</p>
+              <button class="btn btn-primary btn-sm btn-block" onclick="openAuthModal('login')">Sign In</button>
+              <button class="btn btn-outline btn-sm btn-block" onclick="openAuthModal('register')">Create Account</button>
+            </div>
+            <div id="dropdownLoggedIn" style="display: none;">
+              <div class="user-profile-summary">
+                <div class="user-avatar" id="userAvatarChar">E</div>
+                <div>
+                  <h4 id="userProfileName">Emma Watson</h4>
+                  <span class="user-tier">Herbvian Eco Member 🌿</span>
+                </div>
+              </div>
+              <ul class="dropdown-menu-list">
+                <li><a href="#track-order" onclick="switchNav('track-order'); closeAccountDropdown();"><i class="fa-solid fa-box-open"></i> My Orders</a></li>
+                <li><a href="#" onclick="showCustomAlert('Eco Rewards: You currently have 150 Green Points!'); return false;"><i class="fa-solid fa-coins"></i> Green Rewards (150 pts)</a></li>
+                <li><a href="#" onclick="showCustomAlert('Account preferences updated.'); return false;"><i class="fa-solid fa-gear"></i> Account Settings</a></li>
+                <li class="divider"></li>
+                <li><a href="#" class="logout-link" onclick="handleLogout(); return false;"><i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prominent Shopping Cart Trigger Button -->
+        <button class="cart-btn" id="cartToggleBtn" onclick="openCartDrawer()" title="View Shopping Cart">
+          <div class="cart-icon-box">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span class="cart-count-badge" id="cartBadgeCount">0</span>
+          </div>
+          <div class="cart-btn-details">
+            <span class="cart-btn-label">Cart</span>
+            <span class="cart-label-cost" id="cartHeaderTotal">$0.00</span>
+          </div>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-toggle-btn" id="mobileMenuBtn" aria-label="Toggle menu" onclick="toggleMobileNav()">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Live Search Bar Floating Overlay -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-box-card">
+      <div class="search-input-group">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="liveSearchInput" placeholder="Search organic loofah bath pads, kitchen scrubbers, back straps...">
+        <button class="close-search-btn" id="closeSearchBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="search-suggestions" id="searchSuggestions">
+        <span class="suggestion-tag" onclick="quickSearch('Back Scrubber')">Back Scrubber</span>
+        <span class="suggestion-tag" onclick="quickSearch('Kitchen')">Kitchen Dish Sponge</span>
+        <span class="suggestion-tag" onclick="quickSearch('Bath Sponge')">Bath Body Pad</span>
+        <span class="suggestion-tag" onclick="quickSearch('Soap Saver')">Soap Saver Tray</span>
+      </div>
+      <div class="search-results-list" id="searchResultsList"></div>
+    </div>
+  </div>
+
+  <!-- MAIN APP CONTAINER (Tabs / Pages) -->
+  <main class="main-content" id="mainContent">
+
+    <!-- ============================================== -->
+    <!-- TAB 1: HOME PAGE                               -->
+    <!-- ============================================== -->
+    <section class="page-view active" id="page-home">
+
+      <!-- BANNER CHÍNH FULL 2 VIỀN (Local Assets, Sequential Reveal: Product Image First -> Text Cascading Down) -->
+      <section class="hero-carousel-section" id="heroCarousel">
+        <div class="carousel-track-wrapper">
+          <div class="carousel-track" id="heroTrack">
+
+            <!-- Slide 1: Real Grit, Smooth Finish (Image 4 & 2) -->
+            <div class="hero-slide active" data-slide-index="0">
+              <div class="slide-background" style="background-image: url('assets/mens_packaging.jpg');">
+                <div class="slide-overlay-blur"></div>
+              </div>
+              <div class="slide-content">
+                <div class="slide-container hero-grid-layout">
+                  
+                  <!-- Left: Cascading Text Elements (Top Subtitle -> Title -> Cyan Button) -->
+                  <div class="hero-text-side">
+                    <p class="hero-eyebrow-text">
+                      Ditch the flimsy plastic puffs for a rugged, handmade texture that exfoliates exactly where you need it.
+                    </p>
+                    <h1 class="hero-main-heading">
+                      Real Grit, Smooth Finish
+                    </h1>
+                    <div class="hero-action-box">
+                      <button class="btn btn-hero-cyan" onclick="switchNav('product')">
+                        Level Up Your Shower
+                      </button>
+                      <button class="btn btn-hero-secondary" onclick="scrollToElement('best-seller-section')">
+                        <i class="fa-solid fa-play"></i> Watch Video
+                      </button>
+                    </div>
+                    <div class="hero-perks-row">
+                      <span class="perk-item"><i class="fa-solid fa-check"></i> 100% Natural Vietnamese Loofah</span>
+                      <span class="perk-item"><i class="fa-solid fa-check"></i> Heavy-Duty Elastic Strap</span>
+                    </div>
+                  </div>
+
+                  <!-- Right: Product Card Appearing FIRST -->
+                  <div class="hero-product-preview-wrap">
+                    <div class="hero-product-card" onclick="openProductDetail(100)" title="Click to view full product details">
+                      <img src="assets/thoughtful_design.jpg" alt="Herbvian Thoughtful Design Flippable Strap Loofah" class="hero-card-img">
+                      <div class="hero-card-floating-pill">
+                        <i class="fa-solid fa-seedling"></i> Flippable Strap • Longer-Lasting
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 2: Built for the Modern Man (Image 5 & 3) -->
+            <div class="hero-slide" data-slide-index="1">
+              <div class="slide-background" style="background-image: url('assets/thoughtful_design.jpg');">
+                <div class="slide-overlay-blur"></div>
+              </div>
+              <div class="slide-content">
+                <div class="slide-container hero-grid-layout">
+                  
+                  <!-- Left: Cascading Text Elements -->
+                  <div class="hero-text-side">
+                    <p class="hero-eyebrow-text">
+                      Featuring a secure elastic hand strap and durable cotton trim, this scrubber is engineered for heavy-duty use.
+                    </p>
+                    <h2 class="hero-main-heading">
+                      Built for the Modern Man
+                    </h2>
+                    <div class="hero-action-box">
+                      <button class="btn btn-hero-cyan" onclick="switchNav('product')">
+                        Upgrade Your Grooming
+                      </button>
+                      <button class="btn btn-hero-secondary" onclick="openProductDetail(2)">
+                        <i class="fa-solid fa-eye"></i> View Details
+                      </button>
+                    </div>
+                    <div class="hero-perks-row">
+                      <span class="perk-item"><i class="fa-solid fa-check"></i> Lifts Away Dead Skin</span>
+                      <span class="perk-item"><i class="fa-solid fa-check"></i> Unclogs Deep Pores</span>
+                    </div>
+                  </div>
+
+                  <!-- Right: Product Card Appearing FIRST -->
+                  <div class="hero-product-preview-wrap">
+                    <div class="hero-product-card" onclick="openProductDetail(2)" title="Click to view full product details">
+                      <img src="assets/advanced_exfoliation.jpg" alt="Herbvian Advanced Exfoliation for Renewed Skin" class="hero-card-img">
+                      <div class="hero-card-floating-pill">
+                        <i class="fa-solid fa-sparkles"></i> Advanced Exfoliation
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 3: Packaging & Pure Origin (Image 1) -->
+            <div class="hero-slide" data-slide-index="2">
+              <div class="slide-background" style="background-image: url('assets/advanced_exfoliation.jpg');">
+                <div class="slide-overlay-blur"></div>
+              </div>
+              <div class="slide-content">
+                <div class="slide-container hero-grid-layout">
+                  
+                  <!-- Left: Cascading Text Elements -->
+                  <div class="hero-text-side">
+                    <p class="hero-eyebrow-text">
+                      Handmade • Unbleached • Sustainable Vietnamese Natural Loofah with dual hanging loops.
+                    </p>
+                    <h2 class="hero-main-heading">
+                      Herbvian Men's Ultra Loofah
+                    </h2>
+                    <div class="hero-action-box">
+                      <button class="btn btn-hero-cyan" onclick="switchNav('product')">
+                        Shop The 2-Pack ($9.99)
+                      </button>
+                      <button class="btn btn-hero-secondary" onclick="openCartDrawer()">
+                        <i class="fa-solid fa-bag-shopping"></i> View Bag
+                      </button>
+                    </div>
+                    <div class="hero-perks-row">
+                      <span class="perk-item"><i class="fa-solid fa-check"></i> Origin: Vietnam (VN)</span>
+                      <span class="perk-item"><i class="fa-solid fa-check"></i> Zero Microplastics</span>
+                    </div>
+                  </div>
+
+                  <!-- Right: Product Card Appearing FIRST -->
+                  <div class="hero-product-preview-wrap">
+                    <div class="hero-product-card" onclick="openQuickView(1)">
+                      <img src="assets/mens_packaging.jpg" alt="Herbvian Men's Ultra Loofah Packaging" class="hero-card-img">
+                      <div class="hero-card-floating-pill">
+                        <i class="fa-solid fa-certificate"></i> 100% Genuine Herbvian
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Pinned Outer Left & Right Edge Navigation Arrows (Hover-Reveal) -->
+        <button class="hero-arrow-btn prev" id="heroPrevBtn" aria-label="Previous Slide">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button class="hero-arrow-btn next" id="heroNextBtn" aria-label="Next Slide">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <!-- Centered Bottom Indicators Capsule (Hover-Reveal) -->
+        <div class="carousel-indicators" id="heroIndicators">
+          <button class="indicator active" data-slide="0" aria-label="Go to Slide 1"></button>
+          <button class="indicator" data-slide="1" aria-label="Go to Slide 2"></button>
+          <button class="indicator" data-slide="2" aria-label="Go to Slide 3"></button>
+        </div>
+      </section>
+
+      <!-- Trust Badges Bar (International Delivery & Eco Credentials) -->
+      <section class="trust-bar">
+        <div class="container trust-grid">
+          <div class="trust-item">
+            <div class="trust-icon"><i class="fa-solid fa-seedling"></i></div>
+            <div class="trust-info">
+              <h4>100% Plant-Based</h4>
+              <p>Grown in Vietnam, chemical-free and vegan</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon"><i class="fa-solid fa-rotate-left"></i></div>
+            <div class="trust-info">
+              <h4>30-Day Happiness Guarantee</h4>
+              <p>Love it or get a 100% refund, no questions asked</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon"><i class="fa-solid fa-shield-heart"></i></div>
+            <div class="trust-info">
+              <h4>Dermatologist Approved</h4>
+              <p>Gentle deep pore cleansing for clear skin</p>
+            </div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-icon"><i class="fa-solid fa-plane-departure"></i></div>
+            <div class="trust-info">
+              <h4>Global Tracked Shipping</h4>
+              <p>Dispatched in eco-friendly biodegradable mailers</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BEST SELLER PRODUCTS SECTION (Scroll down from home banner) -->
+      <section class="section best-seller-section" id="best-seller-section">
+        <div class="container">
+          <div class="section-header text-center">
+            <span class="sub-badge"><i class="fa-solid fa-fire"></i> CUSTOMER FAVORITES</span>
+            <h2 class="section-title">Herbvian Best Sellers</h2>
+            <p class="section-subtitle">Discover our most loved plant-based essentials, trusted by tens of thousands of eco-conscious homes across the US, Europe, and Asia.</p>
+          </div>
+
+          <!-- Best Sellers Grid -->
+          <div class="products-grid" id="bestSellerGrid">
+            <!-- Dynamically populated via script.js -->
+          </div>
+
+          <!-- View All CTA -->
+          <div class="text-center mt-5">
+            <button class="btn btn-outline btn-lg" onclick="switchNav('product')">
+              View All Sustainable Products <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Brand Story & Origin Showcase (Herbvian Origin: Vietnam VN) -->
+      <section class="section story-section">
+        <div class="container">
+          <div class="story-grid">
+            <div class="story-image-wrap">
+              <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=800&q=80" alt="Herbvian Vietnam Organic Farm" class="story-img">
+              <div class="story-floating-card">
+                <span class="eco-stat-number">250,000+</span>
+                <span class="eco-stat-label">Plastic sponges replaced by Herbvian lovers globally</span>
+              </div>
+            </div>
+            <div class="story-text-content">
+              <span class="sub-badge"><i class="fa-solid fa-spa"></i> ABOUT HERBVIAN</span>
+              <h2 class="section-title">Practical, Sustainable Solutions for Healthier Living</h2>
+              <p>
+                <strong>Herbvian</strong> is a nature-inspired brand offering sustainable and eco-friendly products made from natural plant-based materials. We create simple, practical solutions for everyday living while promoting a healthier lifestyle.
+              </p>
+              <p>
+                Our natural loofah products are carefully selected and designed to support eco-conscious choices, from personal care routines to everyday household use. Rooted in Vietnam's rich agricultural heritage and managed with modern American customer care standards.
+              </p>
+              
+              <div class="process-steps">
+                <div class="step-card">
+                  <div class="step-number">01</div>
+                  <div>
+                    <h5>Organic Harvesting in Vietnam</h5>
+                    <p>Vine-ripened naturally without synthetic growth enhancers or chemical sprays.</p>
+                  </div>
+                </div>
+                <div class="step-card">
+                  <div class="step-number">02</div>
+                  <div>
+                    <h5>Natural Sun-Bleached & Washed</h5>
+                    <p>Washed in freshwater and sun-dried under UV daylight to maintain raw natural fibers.</p>
+                  </div>
+                </div>
+                <div class="step-card">
+                  <div class="step-number">03</div>
+                  <div>
+                    <h5>Handcrafted With Organic Cotton</h5>
+                    <p>Stitched with unbleached cotton straps and sturdy binding for maximum durability.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Customer Testimonials (Global Reviews) -->
+      <section class="section testimonials-section">
+        <div class="container">
+          <div class="section-header text-center">
+            <span class="sub-badge"><i class="fa-solid fa-star"></i> VERIFIED CUSTOMER REVIEWS</span>
+            <h2 class="section-title">Loved by Eco-Conscious Homes Worldwide</h2>
+            <p class="section-subtitle">Over 25,000 5-star ratings from customers who swapped plastic for Herbvian.</p>
+          </div>
+
+          <div class="testimonials-grid">
+            <div class="testimonial-card">
+              <div class="review-stars">★★★★★</div>
+              <p class="review-text">"I suffered from stubborn back breakouts for years. Herbvian’s back scrubber strap changed everything. It expands beautifully in warm water, scrubs deeply without scratching, and leaves my skin noticeably smooth."</p>
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">SC</div>
+                <div>
+                  <strong>Sarah Jenkins</strong>
+                  <span>Austin, TX • Verified Buyer</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="review-stars">★★★★★</div>
+              <p class="review-text">"The kitchen loofah sponges are extraordinary! They cut through oily pasta sauce with ease, don’t scratch my Le Creuset pans, and smell clean even after 2 months. When worn out, I simply tossed it in my garden compost."</p>
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">ML</div>
+                <div>
+                  <strong>Marcus Lindqvist</strong>
+                  <span>Stockholm, Sweden • Verified Buyer</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="review-stars">★★★★★</div>
+              <p class="review-text">"The loofah soap saver mat is genius. My handmade organic goat milk soap lasts twice as long because water drains straight through the fibers. Shipping to Florida was super prompt too!"</p>
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">ER</div>
+                <div>
+                  <strong>Emily Rodriguez</strong>
+                  <span>Tampa, FL • Verified Buyer</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Newsletter Banner -->
+      <section class="newsletter-section">
+        <div class="container newsletter-box">
+          <div class="newsletter-content">
+            <span class="sub-badge" style="background: rgba(255,255,255,0.2); color: #fff;">WELCOME OFFER</span>
+            <h2>Get 15% OFF Your First Order + Free Eco Living E-Book</h2>
+            <p>Join the Herbvian circular living community. Receive exclusive discounts, plant care tips, and zero-waste bathroom recipes.</p>
+          </div>
+          <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+            <input type="email" placeholder="Enter your email address..." required id="newsletterEmail">
+            <button type="submit" class="btn btn-secondary">Claim 15% Off</button>
+          </form>
+        </div>
+      </section>
+
+    </section>
+
+    <!-- ============================================== -->
+    <!-- TAB 2: PRODUCTS CATALOG PAGE                   -->
+    <!-- ============================================== -->
+    <section class="page-view" id="page-product">
+      <div class="container section">
+        <div class="page-hero-banner">
+          <span class="sub-badge"><i class="fa-solid fa-leaf"></i> ZERO-WASTE CATALOG</span>
+          <h1>Herbvian All-Natural Loofah Collection</h1>
+          <p>Carefully selected organic plant fibers for personal wellness, radiant skin, and sustainable kitchen care.</p>
+        </div>
+
+        <!-- Filter & Search Toolbar -->
+        <div class="shop-filter-bar">
+          <div class="filter-categories" id="productFilterButtons">
+            <button class="filter-btn active" data-filter="all" onclick="filterProducts('all')">All Products (8)</button>
+            <button class="filter-btn" data-filter="bath" onclick="filterProducts('bath')">Body & Bath Care (4)</button>
+            <button class="filter-btn" data-filter="kitchen" onclick="filterProducts('kitchen')">Eco Kitchen (3)</button>
+            <button class="filter-btn" data-filter="gift" onclick="filterProducts('gift')">Gift Bundles (2)</button>
+          </div>
+
+          <div class="filter-sort">
+            <label for="sortSelect"><i class="fa-solid fa-arrow-down-wide-short"></i> Sort by:</label>
+            <select id="sortSelect" onchange="sortProducts(this.value)">
+              <option value="popular">Most Popular</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="rating">Highest Rated</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Products Grid List -->
+        <div class="products-grid" id="fullProductGrid">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- TAB: PRODUCT DETAIL PAGE (HIDDEN BY DEFAULT)   -->
+    <!-- Opened dynamically when clicking any product   -->
+    <!-- ============================================== -->
+    <section class="page-view" id="page-product-detail">
+      <div class="container pdp-section-container">
+        <!-- Breadcrumbs Navigation -->
+        <nav class="pdp-breadcrumbs" aria-label="Breadcrumbs">
+          <button type="button" class="pdp-back-btn" onclick="switchNav('product')">
+            <i class="fa-solid fa-arrow-left"></i> Back to Products
+          </button>
+          <span class="pdp-crumb-sep">/</span>
+          <a href="#home" onclick="switchNav('home'); return false;">Home</a>
+          <span class="pdp-crumb-sep">/</span>
+          <a href="#product" onclick="switchNav('product'); return false;">Products</a>
+          <span class="pdp-crumb-sep">/</span>
+          <span class="pdp-current-title" id="pdpBreadcrumbTitle">6pcs Natural Vietnamese Loofah Sponge</span>
+        </nav>
+
+        <!-- Main Product Section (Left Gallery & Right Details) -->
+        <div class="pdp-main-grid">
+          <!-- LEFT COLUMN: Image Gallery & Thumbnail Slider -->
+          <div class="pdp-gallery-column">
+            <div class="pdp-featured-stage">
+              <span class="pdp-sale-badge" id="pdpSaleBadge">SALE</span>
+              <img id="pdpMainImage" class="pdp-main-image" src="assets/6pcs_loofah_main.png" alt="6pcs Natural Vietnamese Loofah Sponge">
+            </div>
+
+            <!-- Thumbnail Slider Row with Left/Right Arrows -->
+            <div class="pdp-thumbs-row-wrap">
+              <button type="button" class="pdp-thumb-arrow prev" onclick="scrollPdpThumbs(-1)" aria-label="Previous thumbnail">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <div class="pdp-thumbs-track" id="pdpThumbsTrack">
+                <div class="pdp-thumb active" onclick="switchPdpImage(0, 'assets/6pcs_loofah_main.png')">
+                  <img src="assets/6pcs_loofah_main.png" alt="6pcs Loofah Sponges in Herbvian Packaging">
+                </div>
+                <div class="pdp-thumb" onclick="switchPdpImage(1, 'assets/thoughtful_design.jpg')">
+                  <img src="assets/thoughtful_design.jpg" alt="Packaging & Organic Design">
+                </div>
+                <div class="pdp-thumb" onclick="switchPdpImage(2, 'assets/prod_bath_pad.jpg')">
+                  <img src="assets/prod_bath_pad.jpg" alt="Gentle Exfoliation in Shower">
+                </div>
+                <div class="pdp-thumb" onclick="switchPdpImage(3, 'assets/prod_dish_sponge.jpg')">
+                  <img src="assets/prod_dish_sponge.jpg" alt="Versatile Eco Cleaning for Sinks & Kitchen">
+                </div>
+                <div class="pdp-thumb" onclick="switchPdpImage(4, 'assets/advanced_exfoliation.jpg')">
+                  <img src="assets/advanced_exfoliation.jpg" alt="Stimulating Shower Care for Men & Women">
+                </div>
+              </div>
+              <button type="button" class="pdp-thumb-arrow next" onclick="scrollPdpThumbs(1)" aria-label="Next thumbnail">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: Product Information & Purchase Area -->
+          <div class="pdp-info-column">
+            <!-- Review Stars & Count (Matches Screenshot) -->
+            <div class="pdp-rating-row" onclick="scrollToPdpAnchor('pdp-reviews-section')" title="Click to view verified customer reviews">
+              <div class="pdp-stars">★★★★★</div>
+              <span class="pdp-review-count">Based on over 1,600+ reviews</span>
+            </div>
+
+            <!-- Product Title -->
+            <h1 class="pdp-title" id="pdpProductTitle">6pcs Natural Vietnamese Loofah Sponge</h1>
+
+            <!-- In-Stock Status Badge -->
+            <div class="pdp-stock-status">
+              <span class="pdp-stock-dot"></span>
+              <span class="pdp-stock-text">IN STOCK, READY TO SHIP</span>
+            </div>
+
+            <!-- Product Tagline -->
+            <p class="pdp-tagline" id="pdpProductTagline">Earth-Friendly Exfoliation for a Happy, Healthy Glow!</p>
+
+            <!-- Pricing Row (Matches Screenshot: 2.000 AFN, 2.700 AFN strike, SALE badge) -->
+            <div class="pdp-price-row">
+              <span class="pdp-current-price" id="pdpCurrentPrice">2.000 AFN</span>
+              <span class="pdp-original-price" id="pdpOriginalPrice">2.700 AFN</span>
+              <span class="pdp-sale-pill">SALE</span>
+            </div>
+
+            <!-- 4 Value Proposition Bullets with Emojis -->
+            <ul class="pdp-features-list">
+              <li><span class="feature-emoji">🌿</span> Eco-friendly luxury for a plastic-free lifestyle</li>
+              <li><span class="feature-emoji">✨</span> Gentle exfoliation for radiant, silky-smooth skin</li>
+              <li><span class="feature-emoji">🍃</span> Pure, chemical-free care safe for your family</li>
+              <li><span class="feature-emoji">🏡</span> Versatile cleaning from spa showers to kitchen sinks</li>
+            </ul>
+
+            <!-- Quantity Stepper -->
+            <div class="pdp-quantity-block">
+              <label class="pdp-qty-label" for="pdpQtyNumber">Quantity</label>
+              <div class="pdp-qty-stepper">
+                <button type="button" class="pdp-qty-btn" onclick="stepPdpQuantity(-1)" aria-label="Decrease quantity">−</button>
+                <span class="pdp-qty-number" id="pdpQtyNumber">1</span>
+                <button type="button" class="pdp-qty-btn" onclick="stepPdpQuantity(1)" aria-label="Increase quantity">+</button>
+              </div>
+            </div>
+
+            <!-- Action Buttons: Add to cart & Shop Pay -->
+            <div class="pdp-actions-box">
+              <button type="button" class="pdp-btn-add-cart" id="pdpAddToCartBtn" onclick="addCurrentPdpToCart()">
+                Add to cart
+              </button>
+              <button type="button" class="pdp-btn-shop-pay" id="pdpShopPayBtn" onclick="buyCurrentPdpWithShopPay()">
+                Buy with <span class="shop-pill"><svg width="68" height="22" viewBox="0 0 75 30" fill="none" style="vertical-align: middle; margin-left: 4px;"><path fill="#fff" d="M12.3 8.5c-.3-.2-.7-.3-1.1-.3H4.8v13.6h2.8v-4.9h3.6c.4 0 .8-.1 1.1-.3.3-.2.6-.5.7-.8.2-.4.3-.8.3-1.4v-4.5c0-.6-.1-1-.3-1.4-.2-.3-.4-.6-.7-.8zm-2 5.6h-2.3v-3.7h2.3c.3 0 .5.1.7.3.2.2.2.4.2.8v1.5c0 .4-.1.7-.2.8-.2.2-.4.3-.7.3zm12.3-5.8h-2.8v4.9h-4.3V8.3h-2.8v13.6h2.8v-5.8h4.3v5.8h2.8V8.3zm7.8 0c-1.3 0-2.4.4-3.2 1.3-.9.9-1.3 2.1-1.3 3.6v4c0 1.5.4 2.7 1.3 3.6.9.9 2 1.3 3.2 1.3s2.4-.4 3.2-1.3c.9-.9 1.3-2.1 1.3-3.6v-4c0-1.5-.4-2.7-1.3-3.6-.8-.9-1.9-1.3-3.2-1.3zm1.7 8.8c0 .6-.1 1.1-.4 1.5-.3.4-.7.6-1.3.6s-1-.2-1.3-.6c-.3-.4-.4-.9-.4-1.5v-3.8c0-.6.1-1.1.4-1.5.3-.4.7-.6 1.3-.6s1 .2 1.3.6c.3.4.4.9.4 1.5v3.8zm9.5-8.8h-6.2v13.6h2.8v-4.7h3.4c1.2 0 2.2-.4 3-1.2.8-.8 1.2-2 1.2-3.5v-1.7c0-1.5-.4-2.7-1.2-3.5-.8-.7-1.8-1.1-3-1.1zm1.5 5.6c0 .5-.1 1-.4 1.3-.3.3-.7.5-1.3.5h-3v-4.6h3c.6 0 1 .2 1.3.5.3.3.4.8.4 1.3v1.5zm11.7 5.1c-.8-.5-1.5-1-2.2-1.5-.6-.5-1-1.1-1-1.8 0-.5.2-.9.6-1.2.4-.3.9-.5 1.5-.5.7 0 1.2.2 1.6.6.4.4.6.9.6 1.5h2.7c0-1.2-.5-2.2-1.4-2.9-.9-.7-2.1-1.1-3.5-1.1-1.4 0-2.5.4-3.4 1.1-.9.8-1.3 1.8-1.3 3 0 1.1.4 2 1.1 2.8.7.7 1.7 1.4 3 2.1.8.5 1.4 1 1.8 1.5.4.5.6 1.1.6 1.8 0 .6-.2 1.1-.7 1.5-.5.4-1.1.6-1.8.6-.8 0-1.5-.2-2-.7-.5-.5-.7-1.1-.7-1.9h-2.8c0 1.4.5 2.5 1.5 3.3 1 .8 2.3 1.2 4 1.2 1.5 0 2.8-.4 3.7-1.2.9-.8 1.4-1.9 1.4-3.2 0-1.2-.5-2.3-1.3-3.1z"/></svg></span>
+              </button>
+              <div class="pdp-more-options-link" onclick="openCheckoutModal()">
+                More payment options
+              </div>
+            </div>
+
+            <!-- Payment Methods Strip (Matches Screenshot: ACH, Amazon, Amex, Apple Pay, Diners, Discover, Google Pay, Mastercard, Maestro, PayPal, Shop Pay, Visa) -->
+            <div class="pdp-payments-strip" aria-label="Supported Payment Methods">
+              <span class="pay-tag"><i class="fa-solid fa-building-columns"></i> ACH</span>
+              <span class="pay-tag"><i class="fa-brands fa-amazon"></i></span>
+              <span class="pay-tag amex">AMEX</span>
+              <span class="pay-tag"><i class="fa-brands fa-apple-pay"></i> Pay</span>
+              <span class="pay-tag">Diners</span>
+              <span class="pay-tag">Discover</span>
+              <span class="pay-tag"><i class="fa-brands fa-google-pay"></i> Pay</span>
+              <span class="pay-tag"><i class="fa-brands fa-cc-mastercard"></i></span>
+              <span class="pay-tag">Maestro</span>
+              <span class="pay-tag paypal"><i class="fa-brands fa-paypal"></i> PayPal</span>
+              <span class="pay-tag shop-pay">Shop Pay</span>
+              <span class="pay-tag"><i class="fa-brands fa-cc-visa"></i> VISA</span>
+            </div>
+
+            <!-- Urgency Live Countdown Timer -->
+            <div class="pdp-urgency-banner">
+              <div class="pdp-urgency-target">Want it by <strong>Monday, 5. Oct?</strong></div>
+              <div class="pdp-urgency-timer">ORDER WITHIN <strong id="pdpCountdownTimer">1 HOURS 29 MINUTES 00 SECONDS</strong></div>
+            </div>
+
+            <!-- Trust Highlights (Packed & Secured, Free & Easy Returns) -->
+            <div class="pdp-trust-row">
+              <div class="pdp-trust-badge">
+                <i class="fa-solid fa-cube"></i>
+                <span>Packed &amp; Secured</span>
+              </div>
+              <div class="pdp-trust-badge">
+                <i class="fa-solid fa-arrow-rotate-left"></i>
+                <span>Free &amp; Easy Returns</span>
+              </div>
+            </div>
+
+            <!-- Collapsible Accordion Panels -->
+            <div class="pdp-accordions-group">
+              <!-- Panel 1: Product Details -->
+              <div class="pdp-accordion-panel open" id="pdpPanelDetails">
+                <button type="button" class="pdp-panel-header" onclick="togglePdpPanel('pdpPanelDetails')">
+                  <span><span class="feature-emoji">🌿</span> Product Details</span>
+                  <i class="fa-solid fa-chevron-down panel-chevron"></i>
+                </button>
+                <div class="pdp-panel-body">
+                  <p>Hand-harvested from mature Vietnamese botanical loofah vines in the fertile Mekong Delta. 100% plant-based, unbleached, and naturally dried under the tropical sun.</p>
+                  <ul class="panel-details-list">
+                    <li><strong>Set Contains:</strong> 6 Compressed natural dried loofah body and kitchen pads with unbleached organic cotton hanging loop.</li>
+                    <li><strong>Natural Softening:</strong> Expands into a spongy, supple lattice when submerged in warm water for 20 seconds.</li>
+                    <li><strong>Deep Body Cleansing:</strong> Gently lifts dead epidermal cells, stimulates micro-capillary circulation, and helps unclog stubborn body pores without scratching.</li>
+                    <li><strong>Zero Plastic Waste:</strong> 100% backyard compostable and biodegradable at end of life.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Panel 2: Shipping & Delivery -->
+              <div class="pdp-accordion-panel" id="pdpPanelShipping">
+                <button type="button" class="pdp-panel-header" onclick="togglePdpPanel('pdpPanelShipping')">
+                  <span><span class="feature-emoji">🚚</span> Shipping &amp; Delivery</span>
+                  <i class="fa-solid fa-chevron-down panel-chevron"></i>
+                </button>
+                <div class="pdp-panel-body">
+                  <p>Fast, carbon-neutral international dispatch within 24 hours. Packed in recyclable plastic-free cardboard cartons.</p>
+                  <ul class="panel-details-list">
+                    <li><strong>Free Worldwide Shipping:</strong> On all orders exceeding $40.00.</li>
+                    <li><strong>Estimated Transit:</strong> 3-5 business days (USA, Canada, EU), 2-4 business days (Asia).</li>
+                    <li><strong>End-to-End Tracking:</strong> Tracking code emailed right after departure with live status updates.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Panel 3: Return & Refund Policy -->
+              <div class="pdp-accordion-panel" id="pdpPanelReturns">
+                <button type="button" class="pdp-panel-header" onclick="togglePdpPanel('pdpPanelReturns')">
+                  <span><span class="feature-emoji">❤️</span> Return &amp; Refund Policy</span>
+                  <i class="fa-solid fa-chevron-down panel-chevron"></i>
+                </button>
+                <div class="pdp-panel-body">
+                  <p>We stand firmly behind our artisanal Vietnamese loofahs with a <strong>30-Day Happiness Guarantee</strong>.</p>
+                  <p>If you or your skin are not completely overjoyed with the texture and results, simply reach out to our 24/7 care team for a prompt refund or replacement, zero hassle.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Customer Testimonial Quote Carousel Card (Matches Screenshot) -->
+            <div class="pdp-quote-testimonial-card">
+              <button type="button" class="quote-arrow" onclick="prevPdpQuote()" aria-label="Previous quote">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <div class="quote-avatar-bubble">
+                <i class="fa-regular fa-comment-dots"></i>
+              </div>
+              <div class="quote-text-zone">
+                <p class="quote-body" id="pdpQuoteBody">"I am obsessed! They start out so thin and then POOF—they grow into the perfect shower companion. My skin has never felt softer, and I love that I'm not using plastic..."</p>
+                <div class="quote-author" id="pdpQuoteAuthor">Sarah J., Portland OR</div>
+                <div class="quote-stars">★★★★★</div>
+              </div>
+              <button type="button" class="quote-arrow" onclick="nextPdpQuote()" aria-label="Next quote">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+            </div>
+
+            <!-- Scroll To... Quick Navigation Pills (Matches Screenshot) -->
+            <div class="pdp-scroll-chips-row">
+              <span class="scroll-chips-label">Scroll to...</span>
+              <button type="button" class="scroll-chip-btn" onclick="scrollToPdpAnchor('pdp-specs-section')">
+                <i class="fa-solid fa-box-open text-green"></i> Product Details
+              </button>
+              <button type="button" class="scroll-chip-btn" onclick="scrollToPdpAnchor('pdp-reviews-section')">
+                <i class="fa-solid fa-star text-green"></i> Reviews
+              </button>
+              <button type="button" class="scroll-chip-btn" onclick="scrollToPdpAnchor('pdp-faq-section')">
+                <i class="fa-solid fa-circle-question text-green"></i> FAQ
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================== -->
+        <!-- EXTENDED SECTIONS: SPECS, REVIEWS, FAQ        -->
+        <!-- ============================================== -->
+        <div class="pdp-extended-sections">
+          <!-- 1. FULL TECHNICAL SPECIFICATIONS TABLE -->
+          <section id="pdp-specs-section" class="pdp-sub-section">
+            <h2 class="pdp-section-heading"><i class="fa-solid fa-list-check text-green"></i> Complete Product Specifications</h2>
+            <div class="specs-table-wrapper">
+              <table class="specs-table">
+                <tbody>
+                  <tr>
+                    <th>Product Name</th>
+                    <td><strong>Herbvian 6pcs Natural Vietnamese Loofah Sponge Pack</strong></td>
+                  </tr>
+                  <tr>
+                    <th>Botanical Source</th>
+                    <td>100% Mature Dried <em>Luffa Aegyptiaca</em> (Cucurbitaceae family)</td>
+                  </tr>
+                  <tr>
+                    <th>Origin &amp; Harvest</th>
+                    <td>Handcrafted in Long An &amp; Dong Nai Organic Farms, Vietnam</td>
+                  </tr>
+                  <tr>
+                    <th>Quantity in Pack</th>
+                    <td>6 Individually compressed pads with unbleached cotton loops</td>
+                  </tr>
+                  <tr>
+                    <th>Dimensions</th>
+                    <td>Compressed: 4.8" x 3.2" x 0.2" • Expanded in water: 4.8" x 3.2" x 1.2"</td>
+                  </tr>
+                  <tr>
+                    <th>Chemical Treatments</th>
+                    <td>0% Bleach, 0% Chemical Softeners, 0% Dyes, 100% Hypoallergenic</td>
+                  </tr>
+                  <tr>
+                    <th>Expected Lifespan</th>
+                    <td>4 to 6 months per pad with proper post-shower air drying</td>
+                  </tr>
+                  <tr>
+                    <th>Packaging</th>
+                    <td>100% Biodegradable FSC-certified Kraft paper with soy-based ink</td>
+                  </tr>
+                  <tr>
+                    <th>End of Life</th>
+                    <td>100% Backyard Compostable (degrades into organic soil matter in 30 days)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- 2. VERIFIED CUSTOMER REVIEWS (1,600+ REVIEWS, 4.9 SCORE) -->
+          <section id="pdp-reviews-section" class="pdp-sub-section pdp-reviews-box">
+            <h2 class="pdp-section-heading"><i class="fa-solid fa-star text-green"></i> Customer Reviews &amp; Ratings</h2>
+            <div class="reviews-header-summary">
+              <div class="rating-overview-row">
+                <div class="score-large">4.9</div>
+                <div>
+                  <div class="score-stars">★★★★★</div>
+                  <div class="score-count">Overall score from 1,624 verified global buyers</div>
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary" onclick="showToast('Review submission form will open for verified buyers!', 'info')">
+                <i class="fa-solid fa-pen"></i> Write a Review
+              </button>
+            </div>
+
+            <div class="reviews-list-grid">
+              <!-- Review 1 -->
+              <div class="user-review-card">
+                <div class="review-meta">
+                  <span class="review-author">Sarah J.</span>
+                  <span class="text-green"><i class="fa-solid fa-circle-check"></i> Verified Buyer</span>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <h4 class="review-title">Best Loofah on the market!</h4>
+                <p class="review-text">"I am obsessed! They start out so thin and then POOF—they grow into the perfect shower companion. My skin has never felt softer, and I love that I'm not using plastic anymore. The strap is super sturdy!"</p>
+              </div>
+
+              <!-- Review 2 -->
+              <div class="user-review-card">
+                <div class="review-meta">
+                  <span class="review-author">Marcus L. (Sweden)</span>
+                  <span class="text-green"><i class="fa-solid fa-circle-check"></i> Verified Buyer</span>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <h4 class="review-title">Cleared my back acne completely</h4>
+                <p class="review-text">"Had bumps on my shoulders for years from gym workouts. After 2 weeks of using this loofah with gentle tea tree soap, my skin is smooth as silk. Highly recommended to anyone looking for clean skincare."</p>
+              </div>
+
+              <!-- Review 3 -->
+              <div class="user-review-card">
+                <div class="review-meta">
+                  <span class="review-author">Emma Watson (UK)</span>
+                  <span class="text-green"><i class="fa-solid fa-circle-check"></i> Verified Buyer</span>
+                </div>
+                <div class="review-stars">★★★★★</div>
+                <h4 class="review-title">Great for both bath and kitchen!</h4>
+                <p class="review-text">"I keep 4 for the shower and 2 for washing dishes. In the kitchen, it cleans stainless steel and cast iron pans without scratching a millimeter. Smells fresh and air-dries crazy fast."</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- 3. FREQUENTLY ASKED QUESTIONS (FAQ) -->
+          <section id="pdp-faq-section" class="pdp-sub-section">
+            <h2 class="pdp-section-heading"><i class="fa-solid fa-circle-question text-green"></i> Frequently Asked Questions</h2>
+            <div class="pdp-faq-accordion">
+              <div class="pdp-faq-item open">
+                <button type="button" class="pdp-faq-q" onclick="this.parentElement.classList.toggle('open')">
+                  <span>How do I expand and prepare the loofah for the first time?</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="pdp-faq-a">
+                  Simply immerse your compressed loofah sponge in a bowl of warm water for 20 to 30 seconds. Watch it magically swell up to 3 times its compressed thickness into a rich, resilient, and spongy bath pad!
+                </div>
+              </div>
+
+              <div class="pdp-faq-item">
+                <button type="button" class="pdp-faq-q" onclick="this.parentElement.classList.toggle('open')">
+                  <span>How do I keep my loofah hygienic and mildew-free?</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="pdp-faq-a">
+                  After every shower or dishwashing session, rinse out all lather thoroughly, gently squeeze out excess water (do not twist violently), and hang it by its cotton loop in an airy, well-ventilated spot. You can also boil it in hot water for 2 minutes once a month to deep sanitize.
+                </div>
+              </div>
+
+              <div class="pdp-faq-item">
+                <button type="button" class="pdp-faq-q" onclick="this.parentElement.classList.toggle('open')">
+                  <span>Is natural Vietnamese loofah safe for sensitive or eczema-prone skin?</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="pdp-faq-a">
+                  Yes! Unlike synthetic nylon puffs with jagged plastic edges, natural mature loofah fibers soften dramatically in hot water. Apply light circular pressure. It buffs away flaking skin while encouraging natural micro-circulation.
+                </div>
+              </div>
+
+              <div class="pdp-faq-item">
+                <button type="button" class="pdp-faq-q" onclick="this.parentElement.classList.toggle('open')">
+                  <span>What do I do when my loofah is worn out after 4-6 months?</span>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="pdp-faq-a">
+                  Because Herbvian loofahs are 100% unbleached organic plant matter, simply snip the cotton loop and toss the sponge directly into your compost bin or bury it under garden soil. It will nourish the earth as rich organic matter within 30 days!
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- TAB 3: BLOGS & STORY PAGE                      -->
+    <!-- ============================================== -->
+    <section class="page-view" id="page-blogs">
+      <div class="container section">
+        <div class="page-hero-banner">
+          <span class="sub-badge"><i class="fa-solid fa-book-open"></i> HERBVIAN JOURNAL</span>
+          <h1>Stories of Sustainable Living & Herbal Care</h1>
+          <p>Explore natural skin wellness, plastic-free living routines, and farm-to-shower stories from Vietnam.</p>
+        </div>
+
+        <div class="blogs-grid">
+          <!-- Blog 1 -->
+          <article class="blog-card" onclick="openBlogModal(1)">
+            <div class="blog-thumb">
+              <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80" alt="Loofah for Clear Skin">
+              <span class="blog-tag">Body Wellness</span>
+            </div>
+            <div class="blog-body">
+              <div class="blog-meta">
+                <span><i class="fa-regular fa-calendar"></i> October 2026</span>
+                <span><i class="fa-regular fa-clock"></i> 4 min read</span>
+              </div>
+              <h3 class="blog-title">Why Natural Loofah Is Dermatologists' Favorite Body Exfoliator</h3>
+              <p class="blog-excerpt">Unlike microplastic microbeads or harsh synthetic scrubbing meshes, plant-based loofah expands with water to create a springy, cushiony 3D lattice...</p>
+              <span class="read-more-link">Read Full Story <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </article>
+
+          <!-- Blog 2 -->
+          <article class="blog-card" onclick="openBlogModal(2)">
+            <div class="blog-thumb">
+              <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=600&q=80" alt="Zero Waste Kitchen Sponge">
+              <span class="blog-tag">Zero Waste Home</span>
+            </div>
+            <div class="blog-body">
+              <div class="blog-meta">
+                <span><i class="fa-regular fa-calendar"></i> September 2026</span>
+                <span><i class="fa-regular fa-clock"></i> 5 min read</span>
+              </div>
+              <h3 class="blog-title">How To Keep Your Plant-Based Kitchen Sponge Fresh for 4+ Months</h3>
+              <p class="blog-excerpt">Simple daily habits: how to properly rinse, hang dry, and sanitize your loofah sponge to ensure complete hygiene without chemical cleaners...</p>
+              <span class="read-more-link">Read Full Story <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </article>
+
+          <!-- Blog 3 -->
+          <article class="blog-card" onclick="openBlogModal(3)">
+            <div class="blog-thumb">
+              <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=600&q=80" alt="Vietnamese Organic Loofah Farm">
+              <span class="blog-tag">Our Roots</span>
+            </div>
+            <div class="blog-body">
+              <div class="blog-meta">
+                <span><i class="fa-regular fa-calendar"></i> September 2026</span>
+                <span><i class="fa-regular fa-clock"></i> 6 min read</span>
+              </div>
+              <h3 class="blog-title">From Vietnamese Family Farms to St. Petersburg, Florida</h3>
+              <p class="blog-excerpt">The journey of Herbvian: connecting traditional regenerative gourd farmers with global consumers passionate about healing the planet...</p>
+              <span class="read-more-link">Read Full Story <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- TAB 4: TRACK ORDER PAGE (Global Courier)       -->
+    <!-- ============================================== -->
+    <section class="page-view" id="page-track-order">
+      <div class="container section">
+        <div class="track-order-card">
+          <div class="text-center mb-4">
+            <span class="sub-badge"><i class="fa-solid fa-truck-ramp-box"></i> GLOBAL CARRIER TRACKING</span>
+            <h1 class="section-title">Track Your Herbvian Order</h1>
+            <p class="section-subtitle">Enter your Order Number (e.g. HERB88) or Tracking Number to view real-time customs clearance and delivery progress.</p>
+          </div>
+
+          <!-- Tracking Form -->
+          <form class="tracking-search-form" id="trackingForm" onsubmit="handleTrackOrder(event)">
+            <div class="input-with-icon">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="trackingInput" placeholder="e.g. HERB88, USPS-9921, or phone number" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg">
+              <i class="fa-solid fa-compass"></i> Track Package
+            </button>
+          </form>
+
+          <div class="demo-track-hint">
+            <span>Click sample tracking codes to test:</span>
+            <button type="button" class="hint-code" onclick="fillTrackCode('HERB88')">HERB88 (In Transit - USPS)</button>
+            <button type="button" class="hint-code" onclick="fillTrackCode('USPS-9921')">USPS-9921 (Out for Delivery)</button>
+            <button type="button" class="hint-code" onclick="fillTrackCode('LOOFAH2026')">LOOFAH2026 (Delivered)</button>
+          </div>
+
+          <!-- Tracking Result Display Container -->
+          <div class="tracking-result-box" id="trackingResultBox" style="display: none;">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- TAB 5: CONTACT US PAGE (Herbvian LLC details)  -->
+    <!-- ============================================== -->
+    <section class="page-view" id="page-contact">
+      <div class="container section">
+        <div class="page-hero-banner">
+          <span class="sub-badge"><i class="fa-solid fa-headset"></i> WE ARE HERE TO HELP</span>
+          <h1>Get in Touch With Herbvian</h1>
+          <p>Have questions about our plant-based loofahs, wholesale distribution, or an existing order? Reach out anytime.</p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Official Business Information (From Screenshot) -->
+          <div class="contact-info-panel">
+            <h3>Herbvian LLC</h3>
+            <p>Sustainable plant-based wellness crafted in Vietnam, supported by our US customer care headquarters in Florida.</p>
+
+            <div class="contact-methods">
+              <div class="c-method-item">
+                <div class="c-icon"><i class="fa-solid fa-location-dot"></i></div>
+                <div>
+                  <strong>Headquarters Address:</strong>
+                  <p>7901 4th St N Ste 300, St. Petersburg, FL 33702, United States</p>
+                </div>
+              </div>
+
+              <div class="c-method-item">
+                <div class="c-icon"><i class="fa-solid fa-earth-americas"></i></div>
+                <div>
+                  <strong>Origin & Harvesting:</strong>
+                  <p>Origin: Vietnam (VN) • Long An & Mekong Delta Organic Farms</p>
+                </div>
+              </div>
+
+              <div class="c-method-item">
+                <div class="c-icon"><i class="fa-solid fa-phone-volume"></i></div>
+                <div>
+                  <strong>Customer Support Hotline:</strong>
+                  <p><strong>+1 815-669-9699</strong> (Mon - Sat, 9am - 6pm EST)</p>
+                </div>
+              </div>
+
+              <div class="c-method-item">
+                <div class="c-icon"><i class="fa-solid fa-envelope"></i></div>
+                <div>
+                  <strong>Email Support:</strong>
+                  <p>support@herbvian.com | Official Web: herbvian.com</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-socials">
+              <h4>Follow Our Journey:</h4>
+              <div class="social-links">
+                <a href="https://instagram.com/herbvian.official" target="_blank" class="social-btn" title="Instagram: @herbvian.official"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://youtube.com/@Herbvian-169" target="_blank" class="social-btn" title="YouTube: @Herbvian-169"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" class="social-btn" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="social-btn" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="contact-form-card">
+            <h3>Send Us a Message</h3>
+            <p>Fill out the form below. Our support team typically replies within 2 to 4 business hours.</p>
+
+            <form id="contactForm" onsubmit="handleContactSubmit(event)">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="cName">Your Full Name *</label>
+                  <input type="text" id="cName" placeholder="Emma Watson" required>
+                </div>
+                <div class="form-group">
+                  <label for="cPhone">Phone Number</label>
+                  <input type="tel" id="cPhone" placeholder="+1 (555) 000-0000">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="cEmail">Email Address *</label>
+                <input type="email" id="cEmail" placeholder="emma@gmail.com" required>
+              </div>
+
+              <div class="form-group">
+                <label for="cTopic">How can we assist you?</label>
+                <select id="cTopic">
+                  <option value="product">Product recommendation & sizing</option>
+                  <option value="order">Track my order or shipping status</option>
+                  <option value="wholesale">Wholesale & B2B distributor inquiry</option>
+                  <option value="other">General question or feedback</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="cMessage">Message *</label>
+                <textarea id="cMessage" rows="4" placeholder="Write your question or request here..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block btn-lg">
+                <i class="fa-regular fa-paper-plane"></i> Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================== -->
+  <!-- FOOTER (Herbvian Official Information)         -->
+  <!-- ============================================== -->
+  <footer class="site-footer">
+    <div class="container footer-top">
+      <!-- Col 1: About Us -->
+      <div class="footer-col brand-col">
+        <h4 class="footer-heading">About Us</h4>
+        <p class="footer-desc">
+          Herbvian is a nature-inspired brand offering sustainable and eco-friendly products made from natural plant-based materials. We create simple, practical solutions for everyday living while promoting a healthier lifestyle.
+        </p>
+        <p class="footer-desc">
+          Our natural loofah products are carefully selected and designed to support eco-conscious choices, from personal care routines to everyday household use.
+        </p>
+      </div>
+
+      <!-- Col 2: Herbvian LLC Origin & Details -->
+      <div class="footer-col">
+        <h4 class="footer-heading">Herbvian</h4>
+        <p class="footer-subtext"><strong>Herbvian LLC</strong></p>
+        <p class="footer-subtext">Origin: Vietnam <span class="flag-vn">VN</span></p>
+        <p class="footer-subtext"><i class="fa-solid fa-location-dot"></i> 7901 4th St N Ste 300, St. Petersburg, FL 33702</p>
+        <p class="footer-subtext"><i class="fa-solid fa-globe"></i> herbvian.com</p>
+        <p class="footer-subtext"><i class="fa-regular fa-envelope"></i> support@herbvian.com</p>
+
+        <div class="footer-social-wrap mt-3">
+          <p class="footer-subtext"><strong>Follow us:</strong></p>
+          <p class="footer-subtext"><i class="fa-brands fa-instagram"></i> Instagram: <strong>@herbvian.official</strong></p>
+          <p class="footer-subtext"><i class="fa-brands fa-youtube"></i> YouTube: <strong>@Herbvian-169</strong></p>
+        </div>
+      </div>
+
+      <!-- Col 3: Contact Us -->
+      <div class="footer-col">
+        <h4 class="footer-heading">Contact Us</h4>
+        <p class="footer-subtext"><strong>Contact Information</strong></p>
+        <ul class="footer-bullet-list">
+          <li>Business: Herbvian</li>
+          <li>Email: <a href="mailto:support@herbvian.com" class="footer-mail-link">support@herbvian.com</a></li>
+        </ul>
+
+        <p class="footer-subtext mt-3"><strong>Customer Support</strong></p>
+        <ul class="footer-bullet-list">
+          <li>Email: <a href="mailto:support@herbvian.com" class="footer-mail-link">support@herbvian.com</a></li>
+          <li>Phone: <strong>+1 815-669-9699</strong></li>
+        </ul>
+        <p class="footer-subtext mt-3" style="font-style: italic; color: #BACDC0;">Operated by Herbvian</p>
+      </div>
+
+      <!-- Col 4: More Infor -->
+      <div class="footer-col">
+        <h4 class="footer-heading">More Infor</h4>
+        <ul class="footer-links">
+          <li><a href="#contact" onclick="switchNav('contact')">Contact Us</a></li>
+          <li><a href="#track-order" onclick="switchNav('track-order')">Track Order</a></li>
+          <li><a href="#" onclick="showCustomAlert('Free Worldwide Shipping on orders over $45. Standard transit time 3-7 days.'); return false;">Shipping Policy</a></li>
+          <li><a href="#" onclick="showCustomAlert('30-Day 100% Refund Policy on all purchases.'); return false;">Refund Policy</a></li>
+          <li><a href="#" onclick="showCustomAlert('Privacy Policy: We do not share customer data with third parties.'); return false;">Privacy Policy</a></li>
+          <li><a href="#" onclick="showCustomAlert('Terms of Service of Herbvian LLC.'); return false;">Terms of Service</a></li>
+        </ul>
+
+        <div class="mt-4">
+          <button class="btn btn-secondary btn-sm" onclick="showToast('Thank you for following Herbvian on Shop!', 'success')">
+            <i class="fa-solid fa-heart"></i> Follow on shop
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payment Badges (Exact matches from screenshot: ACH, Amazon, Amex, Apple Pay, Diners, Discover, Google Pay, Mastercard, PayPal, Shop Pay, Visa) -->
+    <div class="footer-payment-strip">
+      <div class="container footer-payment-inner">
+        <div class="country-currency-pill">
+          <span>Country/region:</span>
+          <select onchange="changeCurrency(this.value)">
+            <option value="USD">United States | USD $</option>
+            <option value="CAD">Canada | CAD $</option>
+            <option value="EUR">Europe | EUR €</option>
+            <option value="GBP">United Kingdom | GBP £</option>
+            <option value="VND">Vietnam | VND ₫</option>
+          </select>
+        </div>
+
+        <div class="payment-icons-list">
+          <span class="pay-chip" title="ACH Direct Payment">ACH</span>
+          <span class="pay-chip" title="Amazon Pay"><i class="fa-brands fa-amazon"></i></span>
+          <span class="pay-chip" title="American Express"><i class="fa-brands fa-cc-amex"></i></span>
+          <span class="pay-chip" title="Apple Pay"><i class="fa-brands fa-apple-pay"></i></span>
+          <span class="pay-chip" title="Diners Club"><i class="fa-brands fa-cc-diners-club"></i></span>
+          <span class="pay-chip" title="Discover"><i class="fa-brands fa-cc-discover"></i></span>
+          <span class="pay-chip" title="Google Pay"><i class="fa-brands fa-google-pay"></i></span>
+          <span class="pay-chip" title="Mastercard"><i class="fa-brands fa-cc-mastercard"></i></span>
+          <span class="pay-chip" title="PayPal"><i class="fa-brands fa-paypal"></i></span>
+          <span class="pay-chip shop-pay" title="Shop Pay">shop</span>
+          <span class="pay-chip" title="Visa"><i class="fa-brands fa-cc-visa"></i></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>© 2026 Herbvian LLC. All Rights Reserved. Pure plant-based living from Vietnam to the world.</p>
+        <p>Built with botanical elegance & zero microplastics.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================== -->
+  <!-- MODAL: SIGN IN / REGISTER (AUTH MODAL)         -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="authModal">
+    <div class="modal-card auth-modal-card">
+      <button class="modal-close-btn" onclick="closeAuthModal()"><i class="fa-solid fa-xmark"></i></button>
+
+      <!-- Auth Tabs Switcher -->
+      <div class="auth-tabs">
+        <button class="auth-tab-btn active" id="tabLoginBtn" onclick="switchAuthTab('login')">
+          <i class="fa-solid fa-right-to-bracket"></i> Sign In
+        </button>
+        <button class="auth-tab-btn" id="tabRegisterBtn" onclick="switchAuthTab('register')">
+          <i class="fa-solid fa-user-plus"></i> Register
+        </button>
+      </div>
+
+      <!-- FORM SIGN IN -->
+      <form class="auth-form" id="loginForm" onsubmit="handleLoginSubmit(event)">
+        <div class="auth-header text-center">
+          <h3>Welcome Back to Herbvian</h3>
+          <p>Sign in to view tracking, redeem Green Rewards, and checkout faster.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="loginEmail">Email Address</label>
+          <div class="input-icon-wrap">
+            <i class="fa-regular fa-envelope"></i>
+            <input type="email" id="loginEmail" placeholder="emma@gmail.com" required value="customer@herbvian.com">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="flex-between">
+            <label for="loginPassword">Password</label>
+            <a href="#" class="forgot-pass-link" onclick="showCustomAlert('Password reset link sent to demo email!'); return false;">Forgot password?</a>
+          </div>
+          <div class="input-icon-wrap">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="loginPassword" placeholder="Enter your password..." required value="herbvian2026">
+            <button type="button" class="eye-btn" onclick="togglePasswordVisibility('loginPassword', this)"><i class="fa-regular fa-eye"></i></button>
+          </div>
+        </div>
+
+        <div class="form-checkbox">
+          <input type="checkbox" id="rememberMe" checked>
+          <label for="rememberMe">Remember me on this browser</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In to Account
+        </button>
+
+        <div class="auth-divider"><span>Or continue with</span></div>
+
+        <div class="social-login-grid">
+          <button type="button" class="btn-social google" onclick="socialLoginDemo('Google')">
+            <i class="fa-brands fa-google"></i> Google
+          </button>
+          <button type="button" class="btn-social apple" onclick="socialLoginDemo('Apple')">
+            <i class="fa-brands fa-apple"></i> Apple
+          </button>
+        </div>
+      </form>
+
+      <!-- FORM REGISTER -->
+      <form class="auth-form" id="registerForm" style="display: none;" onsubmit="handleRegisterSubmit(event)">
+        <div class="auth-header text-center">
+          <h3>Join The Herbvian Family</h3>
+          <p>Create an account and get 15% OFF your initial zero-waste order.</p>
+        </div>
+
+        <div class="form-group">
+          <label for="regName">Full Name</label>
+          <div class="input-icon-wrap">
+            <i class="fa-regular fa-user"></i>
+            <input type="text" id="regName" placeholder="Emma Watson" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="regEmail">Email Address</label>
+          <div class="input-icon-wrap">
+            <i class="fa-regular fa-envelope"></i>
+            <input type="email" id="regEmail" placeholder="emma@gmail.com" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="regPassword">Password</label>
+          <div class="input-icon-wrap">
+            <i class="fa-solid fa-lock"></i>
+            <input type="password" id="regPassword" placeholder="Minimum 6 characters" minlength="6" required>
+            <button type="button" class="eye-btn" onclick="togglePasswordVisibility('regPassword', this)"><i class="fa-regular fa-eye"></i></button>
+          </div>
+        </div>
+
+        <div class="form-checkbox">
+          <input type="checkbox" id="regAgree" required checked>
+          <label for="regAgree">I agree to Herbvian's Terms of Service and Privacy Policy</label>
+        </div>
+
+        <button type="submit" class="btn btn-secondary btn-block btn-lg">
+          <i class="fa-solid fa-user-plus"></i> Create My Account
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- SLIDE-OUT SHOPPING CART DRAWER                 -->
+  <!-- ============================================== -->
+  <div class="cart-drawer-overlay" id="cartOverlay" onclick="closeCartDrawer()"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <div class="cart-title-wrap">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <h3>Your Eco Bag</h3>
+        <span class="cart-badge-count-pill" id="cartDrawerCount">0 items</span>
+      </div>
+      <button class="cart-close-btn" onclick="closeCartDrawer()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+
+    <!-- Free Worldwide Shipping Progress Bar ($45 Threshold) -->
+    <div class="free-shipping-progress" id="freeShippingBanner">
+      <div class="fs-text" id="fsNoticeText">Add <strong>$22.01</strong> more for <strong>Free Worldwide Shipping</strong>!</div>
+      <div class="fs-bar"><div class="fs-fill" id="fsProgressFill" style="width: 50%;"></div></div>
+    </div>
+
+    <!-- Cart Items List Container -->
+    <div class="cart-drawer-body" id="cartItemsContainer">
+      <!-- Injected by script.js -->
+    </div>
+
+    <!-- Cart Footer & Checkout -->
+    <div class="cart-drawer-footer" id="cartDrawerFooter">
+      <div class="coupon-box">
+        <input type="text" id="couponInput" placeholder="Discount code (try: HERBVIAN15)">
+        <button type="button" onclick="applyVoucher()">Apply</button>
+      </div>
+      <div id="couponAppliedMessage" class="coupon-tag-applied" style="display: none;"></div>
+
+      <div class="cart-summary-breakdown">
+        <div class="summary-line">
+          <span>Subtotal:</span>
+          <span id="cartSubtotal">$0.00</span>
+        </div>
+        <div class="summary-line" id="discountRow" style="display: none;">
+          <span class="text-success">Discount (15% OFF):</span>
+          <span class="text-success" id="cartDiscount">-$0.00</span>
+        </div>
+        <div class="summary-line">
+          <span>Estimated Shipping:</span>
+          <span id="cartShippingFee">$4.99</span>
+        </div>
+        <div class="summary-line total-line">
+          <span>Total:</span>
+          <span class="total-price-value" id="cartFinalTotal">$0.00</span>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-block btn-lg checkout-btn" onclick="openCheckoutModal()">
+        <i class="fa-solid fa-lock"></i> Proceed to Checkout
+      </button>
+
+      <!-- Express Checkout Icons -->
+      <div class="cart-express-checkout">
+        <span>Instant Express Checkout:</span>
+        <div class="express-icons">
+          <span class="exp-btn shop-pay"><i class="fa-solid fa-bag-shopping"></i> Shop Pay</span>
+          <span class="exp-btn paypal"><i class="fa-brands fa-paypal"></i> PayPal</span>
+          <span class="exp-btn apple"><i class="fa-brands fa-apple-pay"></i> Apple Pay</span>
+        </div>
+      </div>
+
+      <p class="cart-safety-note"><i class="fa-solid fa-shield"></i> 30-Day Money-Back Guarantee • 100% Zero-Plastic</p>
+    </div>
+  </aside>
+
+  <!-- ============================================== -->
+  <!-- MODAL: GLOBAL CHECKOUT DEMO                    -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="checkoutModal">
+    <div class="modal-card checkout-card">
+      <button class="modal-close-btn" onclick="closeCheckoutModal()"><i class="fa-solid fa-xmark"></i></button>
+      <div class="checkout-header">
+        <div class="checkout-icon"><i class="fa-solid fa-receipt"></i></div>
+        <div>
+          <h3>Herbvian Secure Checkout</h3>
+          <p>Please enter your shipping address to test the demo order placement.</p>
+        </div>
+      </div>
+
+      <form id="checkoutForm" onsubmit="handleCheckoutSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First & Last Name *</label>
+            <input type="text" id="orderRecipientName" required placeholder="Emma Watson" value="Emma Watson">
+          </div>
+          <div class="form-group">
+            <label>Phone Number *</label>
+            <input type="tel" id="orderRecipientPhone" required placeholder="+1 (555) 000-0000" value="+1 815-669-9699">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Delivery Address *</label>
+          <input type="text" id="orderAddress" required placeholder="Street address, Apt, Suite" value="7901 4th St N Ste 300, St. Petersburg, FL 33702">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>City / State / Zip *</label>
+            <input type="text" id="orderCityState" required placeholder="City, State Zip" value="St. Petersburg, FL 33702">
+          </div>
+          <div class="form-group">
+            <label>Country *</label>
+            <select id="orderCountry">
+              <option value="United States" selected>United States</option>
+              <option value="Canada">Canada</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Germany">Germany</option>
+              <option value="Vietnam">Vietnam</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="payment-selection">
+          <label class="d-block mb-2 font-weight-bold">Select Payment Option:</label>
+          <label class="pay-radio active">
+            <input type="radio" name="paymentOption" value="card" checked>
+            <span><i class="fa-brands fa-cc-visa"></i> Credit / Debit Card (Visa, Master, Amex)</span>
+          </label>
+          <label class="pay-radio">
+            <input type="radio" name="paymentOption" value="paypal">
+            <span><i class="fa-brands fa-paypal"></i> PayPal / Shop Pay Express</span>
+          </label>
+          <label class="pay-radio">
+            <input type="radio" name="paymentOption" value="cod">
+            <span><i class="fa-solid fa-money-bill-wave"></i> Cash on Delivery (Selected regions)</span>
+          </label>
+        </div>
+
+        <div class="checkout-total-box">
+          <span>Amount to Pay:</span>
+          <strong id="checkoutFinalAmount">$0.00</strong>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg">
+          <i class="fa-solid fa-circle-check"></i> Place Demo Order Now
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: QUICK VIEW PRODUCT                      -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="quickViewModal">
+    <div class="modal-card quick-view-card">
+      <button class="modal-close-btn" onclick="closeQuickView()"><i class="fa-solid fa-xmark"></i></button>
+      <div class="quick-view-grid" id="quickViewContent">
+        <!-- Rendered by script.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: BLOG DETAIL                             -->
+  <!-- ============================================== -->
+  <div class="modal-backdrop" id="blogModal">
+    <div class="modal-card blog-modal-card">
+      <button class="modal-close-btn" onclick="closeBlogModal()"><i class="fa-solid fa-xmark"></i></button>
+      <div id="blogDetailContainer">
+        <!-- Rendered by script.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- LIVE CHAT WIDGET FOR GLOBAL CUSTOMERS          -->
+  <!-- ============================================== -->
+  <div class="live-chat-wrapper">
+    <!-- Chat Trigger Bubble Button -->
+    <button class="chat-trigger-btn" id="chatTriggerBtn" onclick="toggleChatWindow()" aria-label="Open Herbvian Customer Support Chat">
+      <i class="fa-solid fa-comments chat-open-icon"></i>
+      <i class="fa-solid fa-xmark chat-close-icon"></i>
+      <span class="chat-unread-dot" id="chatUnreadDot">1</span>
+      <span class="chat-tooltip">Chat with Herbvian 🌱</span>
+    </button>
+
+    <!-- Chat Pop-up Window Box -->
+    <div class="chat-window-box" id="chatWindowBox">
+      <div class="chat-header">
+        <div class="agent-profile">
+          <div class="agent-avatar-wrap">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80" alt="Herbvian Care Specialist" class="agent-img">
+            <span class="online-indicator"></span>
+          </div>
+          <div>
+            <h4>Emily - Herbvian Support</h4>
+            <span class="agent-status">Online • 24/7 Global Customer Care</span>
+          </div>
+        </div>
+        <div class="chat-header-actions">
+          <button class="chat-icon-btn" onclick="clearChatHistory()" title="Clear conversation"><i class="fa-regular fa-trash-can"></i></button>
+          <button class="chat-icon-btn" onclick="toggleChatWindow()" title="Minimize"><i class="fa-solid fa-minus"></i></button>
+        </div>
+      </div>
+
+      <!-- Quick FAQs Buttons -->
+      <div class="chat-quick-replies" id="chatQuickReplies">
+        <span class="quick-reply-pill" onclick="sendQuickReply('How long does a loofah last?')">How long does it last?</span>
+        <span class="quick-reply-pill" onclick="sendQuickReply('How do I soften it for first use?')">How to soften for 1st use?</span>
+        <span class="quick-reply-pill" onclick="sendQuickReply('Free shipping policy?')">Free shipping policy?</span>
+        <span class="quick-reply-pill" onclick="sendQuickReply('Where are you based?')">Where is Herbvian based?</span>
+      </div>
+
+      <!-- Chat Messages Body -->
+      <div class="chat-body" id="chatMessagesBody">
+        <div class="message-bubble bot">
+          <div class="msg-avatar"><i class="fa-solid fa-seedling"></i></div>
+          <div class="msg-content">
+            <p>Hello! Welcome to <strong>Herbvian</strong> 🌱 I'm Emily. Whether you need help selecting the right body scrubber, kitchen sponge, or tracking an international package, I'm right here!</p>
+            <span class="msg-time">Just now</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat Input Form -->
+      <form class="chat-input-bar" id="chatForm" onsubmit="handleSendChatMessage(event)">
+        <input type="text" id="chatInput" placeholder="Ask anything about our plant loofahs..." autocomplete="off">
+        <button type="submit" class="btn-send-chat" id="sendChatBtn" aria-label="Send message">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notifications Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- JavaScript App Controller -->
+  <script src="script.js"></script>
+</body>
+</html>

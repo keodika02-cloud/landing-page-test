@@ -348,6 +348,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initHeroCarousel();
   init3DParallaxTilt();
 
+  // Initialize Gliding Pill Slider Navigation
+  initNavPillSlider();
+
   // Initialize Cart UI & User UI
   updateCartUI();
   updateUserUI();
@@ -398,12 +401,89 @@ function formatCurrency(usdAmount) {
 }
 
 // ========================================================
-// 5. NAVIGATION TAB SWITCHING
+// 5. NAVIGATION TAB SWITCHING & GLIDING PILL SLIDER
 // ========================================================
-function switchNav(pageId) {
-  document.querySelectorAll(".nav-link").forEach(btn => {
-    btn.classList.toggle("active", btn.dataset.page === pageId);
+let updateNavPillSlider = null;
+
+function initNavPillSlider() {
+  const nav = document.getElementById("mainNav");
+  const pill = document.getElementById("navIndicatorPill");
+  if (!nav || !pill) return;
+
+  const links = Array.from(nav.querySelectorAll(".nav-link"));
+
+  function movePillTo(element, animate = true) {
+    if (!element || window.innerWidth <= 768) {
+      pill.style.opacity = "0";
+      return;
+    }
+
+    const navRect = nav.getBoundingClientRect();
+    const targetRect = element.getBoundingClientRect();
+
+    const left = targetRect.left - navRect.left;
+    const width = targetRect.width;
+
+    if (!animate) {
+      pill.style.transition = "none";
+    } else {
+      pill.style.transition = "transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), width 0.38s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.22s ease";
+    }
+
+    pill.style.transform = `translateX(${left}px)`;
+    pill.style.width = `${width}px`;
+    pill.style.opacity = "1";
+
+    if (!animate) {
+      void pill.offsetWidth;
+      pill.style.transition = "";
+    }
+  }
+
+  function getActiveLink() {
+    return nav.querySelector(".nav-link.active") || links[0];
+  }
+
+  // Expose updater so switchNav glides the pill only when a tab is clicked / navigated
+  updateNavPillSlider = (targetBtn) => {
+    movePillTo(targetBtn || getActiveLink(), true);
+  };
+
+  // Initial placement after fonts and layouts settle
+  setTimeout(() => {
+    movePillTo(getActiveLink(), false);
+  }, 80);
+
+  // Recalculate on window resize
+  window.addEventListener("resize", () => {
+    movePillTo(getActiveLink(), false);
   });
+}
+
+function switchNav(pageId) {
+  let activeBtn = null;
+  document.querySelectorAll(".nav-link").forEach(btn => {
+    const isTarget = btn.dataset.page === pageId || (pageId === "product-detail" && btn.dataset.page === "product");
+    btn.classList.toggle("active", isTarget);
+    if (isTarget) activeBtn = btn;
+  });
+
+  // Sync mobile drawer navigation items
+  document.querySelectorAll(".mobile-nav-item").forEach(item => {
+    const isTarget = item.dataset.page === pageId || (pageId === "product-detail" && item.dataset.page === "product");
+    item.classList.toggle("active", isTarget);
+  });
+
+  // Sync fixed mobile bottom app bar items
+  document.querySelectorAll(".bottom-bar-btn").forEach(item => {
+    const isTarget = item.dataset.page === pageId || (pageId === "product-detail" && item.dataset.page === "product");
+    item.classList.toggle("active", isTarget);
+  });
+
+  // Smoothly glide pill to the newly activated link
+  if (typeof updateNavPillSlider === "function") {
+    updateNavPillSlider(activeBtn);
+  }
 
   document.querySelectorAll(".page-view").forEach(page => {
     page.classList.remove("active");
@@ -422,30 +502,48 @@ function switchNav(pageId) {
     }
   }
 
+  closeMobileNav();
   closeAccountDropdown();
+}
+
+function openMobileNav() {
+  const drawer = document.getElementById("mobileNavDrawer");
+  const overlay = document.getElementById("mobileNavOverlay");
+  if (drawer && overlay) {
+    drawer.classList.add("active");
+    overlay.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+}
+
+function closeMobileNav() {
+  const drawer = document.getElementById("mobileNavDrawer");
+  const overlay = document.getElementById("mobileNavOverlay");
+  if (drawer && overlay) {
+    drawer.classList.remove("active");
+    overlay.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+}
+
+function toggleMobileNav() {
+  const drawer = document.getElementById("mobileNavDrawer");
+  if (drawer && drawer.classList.contains("active")) {
+    closeMobileNav();
+  } else {
+    openMobileNav();
+  }
+}
+
+function mobileSwitchNav(pageId) {
+  closeMobileNav();
+  switchNav(pageId);
 }
 
 function scrollToElement(elementId) {
   const el = document.getElementById(elementId);
   if (el) {
     el.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-}
-
-function toggleMobileNav() {
-  const nav = document.getElementById("mainNav");
-  if (nav) {
-    const isShowing = nav.style.display === "flex";
-    nav.style.display = isShowing ? "none" : "flex";
-    nav.style.flexDirection = "column";
-    nav.style.position = "absolute";
-    nav.style.top = "70px";
-    nav.style.left = "20px";
-    nav.style.right = "20px";
-    nav.style.background = "#FFFFFF";
-    nav.style.boxShadow = "0 10px 30px rgba(0,0,0,0.15)";
-    nav.style.borderRadius = "14px";
-    nav.style.padding = "14px";
   }
 }
 
@@ -482,8 +580,13 @@ function initHeroCarousel() {
   track.appendChild(firstClone);
   track.insertBefore(lastClone, originalSlides[0]);
 
-  // Adjust track width: (numSlides + 2) * 100%
-  track.style.width = `${(numSlides + 2) * 100}%`;
+  // Adjust track width: totalSlides * 100%
+  const totalSlides = numSlides + 2;
+  track.style.width = `${totalSlides * 100}%`;
+  track.querySelectorAll(".hero-slide").forEach(s => {
+    s.style.width = `${100 / totalSlides}%`;
+    s.style.flex = `0 0 ${100 / totalSlides}%`;
+  });
 
   let virtualIndex = 1; // start on real slide 0 (position 1)
   let isMoving = false;
@@ -496,7 +599,8 @@ function initHeroCarousel() {
     } else {
       track.style.transition = "none";
     }
-    track.style.transform = `translateX(-${idx * 100}vw)`;
+    const percent = (idx * 100) / totalSlides;
+    track.style.transform = `translateX(-${percent}%)`;
   }
 
   function updateActiveSlide(idx) {
@@ -743,6 +847,26 @@ function sortProducts(criteria) {
   renderFullProducts(list);
 }
 
+/**
+ * Filter Benefit Cards on the Product Benefits Guide Page
+ */
+function filterBenefitCards(category, btn) {
+  document.querySelectorAll(".benefits-filter-bar .benefit-tab-btn").forEach(b => {
+    b.classList.remove("active");
+  });
+  if (btn) btn.classList.add("active");
+
+  const cards = document.querySelectorAll("#benefitsGuideGrid .benefit-card");
+  cards.forEach(card => {
+    if (category === "all" || card.dataset.category === category) {
+      card.style.display = "grid";
+      card.style.animation = "pageSlideEntrance 0.35s ease forwards";
+    } else {
+      card.style.display = "none";
+    }
+  });
+}
+
 // ========================================================
 // 8. SHOPPING CART DRAWER & OPERATIONS
 // ========================================================
@@ -802,6 +926,8 @@ function updateCartUI() {
 
   if (badge) badge.innerText = totalCount;
   if (drawerCount) drawerCount.innerText = `${totalCount} item${totalCount === 1 ? "" : "s"}`;
+  const bottomBadge = document.getElementById("bottomCartBadge");
+  if (bottomBadge) bottomBadge.innerText = totalCount;
 
   let subtotalUSD = 0;
   let itemsHTML = "";
@@ -1726,4 +1852,41 @@ function scrollToPdpAnchor(anchorId) {
     target.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 }
+
+/**
+ * Click-to-copy Promo Code from running ticker
+ */
+function copyPromoCode(code) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(code).then(() => {
+      showToast(`Copied coupon code "${code}"! 15% discount will be applied at checkout.`, "success");
+    }).catch(() => {
+      showToast(`Promo Code: ${code} (15% OFF your order)`, "info");
+    });
+  } else {
+    showToast(`Promo Code: ${code} (15% OFF your order)`, "info");
+  }
+}
+
+/**
+ * Filter Benefit Cards on Product Benefits Page
+ */
+function filterBenefitCards(category, btn) {
+  // Update active button state
+  document.querySelectorAll(".benefit-tab-btn").forEach(b => b.classList.remove("active"));
+  if (btn) btn.classList.add("active");
+
+  const cards = document.querySelectorAll(".benefit-card");
+  cards.forEach(card => {
+    const cardCat = card.dataset.category;
+    if (category === "all" || cardCat === category) {
+      card.style.display = "grid";
+      card.style.animation = "fadeInUp 0.35s ease forwards";
+    } else {
+      card.style.display = "none";
+    }
+  });
+}
+
+
 

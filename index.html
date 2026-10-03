@@ -20,17 +20,68 @@
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
+  <!-- Favicon: Official Herbvian Icon -->
+  <link rel="icon" type="image/png" href="assets/herbvian_logo_real.png">
+  
   <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Top Announcement Bar (Full-Width Global Shipping & Voucher) -->
+  <!-- Top Announcement Bar (Full-Width Running Ticker Marquee) -->
   <div class="announcement-bar">
     <div class="announcement-inner">
-      <div class="announcement-promo">
-        <span>🌿 <strong>EARTH MONTH SPECIAL:</strong> Get 15% OFF your first order with code <code>HERBVIAN15</code> | Free Worldwide Shipping on orders $45+</span>
+      <!-- Automatic Running Marquee Ticker -->
+      <div class="announcement-promo" title="Hover to pause ticker">
+        <div class="ticker-track">
+          <!-- Item 1: Promo Code -->
+          <div class="ticker-item">
+            <span>🌿 <strong>Earth Month:</strong> 15% OFF your first order with code <span class="ticker-code" onclick="copyPromoCode('HERBVIAN15')" title="Click to copy code">HERBVIAN15 <i class="fa-regular fa-copy"></i></span></span>
+          </div>
+          <span class="ticker-sep">•</span>
+
+          <!-- Item 2: Free Ship All Orders -->
+          <div class="ticker-item">
+            <span>🚚 <span class="ticker-highlight">Free Shipping on All Orders</span> <span class="ticker-subtext">— Worldwide Express</span></span>
+          </div>
+          <span class="ticker-sep">•</span>
+
+          <!-- Item 3: Limited Stock Available -->
+          <div class="ticker-item">
+            <span>🔥 <span class="ticker-urgent">Limited Stock Available</span> <span class="ticker-subtext">— Fresh Harvest</span></span>
+          </div>
+          <span class="ticker-sep">•</span>
+
+          <!-- Item 4: 100% Organic Origin -->
+          <div class="ticker-item">
+            <span>🌱 <strong>100% Vietnamese Natural Loofah</strong> <span class="ticker-subtext">— Zero Plastic &bull; Backyard Compostable</span></span>
+          </div>
+          <span class="ticker-sep">•</span>
+
+          <!-- DUPLICATE SET FOR INFINITE SEAMLESS LOOP -->
+          <div class="ticker-item">
+            <span>🌿 <strong>Earth Month:</strong> 15% OFF your first order with code <span class="ticker-code" onclick="copyPromoCode('HERBVIAN15')" title="Click to copy code">HERBVIAN15 <i class="fa-regular fa-copy"></i></span></span>
+          </div>
+          <span class="ticker-sep">•</span>
+
+          <div class="ticker-item">
+            <span>🚚 <span class="ticker-highlight">Free Shipping on All Orders</span> <span class="ticker-subtext">— Worldwide Express</span></span>
+          </div>
+          <span class="ticker-sep">•</span>
+
+          <div class="ticker-item">
+            <span>🔥 <span class="ticker-urgent">Limited Stock Available</span> <span class="ticker-subtext">— Fresh Harvest</span></span>
+          </div>
+          <span class="ticker-sep">•</span>
+
+          <div class="ticker-item">
+            <span>🌱 <strong>100% Vietnamese Natural Loofah</strong> <span class="ticker-subtext">— Zero Plastic &bull; Backyard Compostable</span></span>
+          </div>
+          <span class="ticker-sep">•</span>
+        </div>
       </div>
+
+      <!-- Right Utility Links & Currency Switcher -->
       <div class="announcement-links">
         <div class="country-currency-picker" id="currencyPicker">
           <i class="fa-solid fa-globe"></i>
@@ -43,7 +94,7 @@
           </select>
         </div>
         <a href="#track-order" onclick="switchNav('track-order')"><i class="fa-solid fa-truck-fast"></i> Track Order</a>
-        <a href="tel:+18156699699"><i class="fa-solid fa-phone"></i> +1 815-669-9699</a>
+        <a href="tel:+17037324825"><i class="fa-solid fa-phone"></i> +1 703-732-4825</a>
       </div>
     </div>
   </div>
@@ -51,27 +102,26 @@
   <!-- Main Navigation Header -->
   <header class="site-header" id="siteHeader">
     <div class="header-container">
-      <!-- Brand Logo: Herbvian -->
-      <a href="#home" class="brand-logo" onclick="switchNav('home')">
-        <div class="logo-icon">
-          <i class="fa-solid fa-leaf"></i>
-        </div>
-        <div class="logo-text">
-          <span class="logo-title">Herbvian</span>
-          <span class="logo-slogan">Pure Plant-Based Essentials</span>
-        </div>
+      <!-- Brand Logo: Herbvian Official Logo -->
+      <a href="#home" class="brand-logo" onclick="switchNav('home')" aria-label="Herbvian - Pure Plant-Based Essentials">
+        <img src="assets/herbvian_logo_transparent.png" alt="Herbvian - Pure Plant-Based Essentials" class="site-brand-logo-img">
       </a>
 
       <!-- Desktop Nav Links -->
       <nav class="main-nav" id="mainNav">
+        <!-- Floating Animated Gliding Pill Slider -->
+        <span class="nav-indicator-pill" id="navIndicatorPill" aria-hidden="true"></span>
         <button class="nav-link active" data-page="home" onclick="switchNav('home')">
           <i class="fa-solid fa-house"></i> Home
         </button>
         <button class="nav-link" data-page="product" onclick="switchNav('product')">
           <i class="fa-solid fa-spray-can-sparkles"></i> Products
         </button>
-        <button class="nav-link" data-page="blogs" onclick="switchNav('blogs')">
-          <i class="fa-solid fa-book-open-reader"></i> Our Story & Blogs
+        <button class="nav-link" data-page="benefits" onclick="switchNav('benefits')">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Product Benefits
+        </button>
+        <button class="nav-link" data-page="our-story" onclick="switchNav('our-story')">
+          <i class="fa-solid fa-leaf"></i> Our Story
         </button>
         <button class="nav-link" data-page="track-order" onclick="switchNav('track-order')">
           <i class="fa-solid fa-location-dot"></i> Track Order
@@ -142,6 +192,90 @@
     </div>
   </header>
 
+  <!-- Mobile Navigation Slide-Out Drawer & Backdrop Overlay -->
+  <div class="mobile-nav-overlay" id="mobileNavOverlay" onclick="closeMobileNav()"></div>
+  <aside class="mobile-nav-drawer" id="mobileNavDrawer" aria-label="Mobile Navigation">
+    <div class="mobile-drawer-header">
+      <div class="mobile-drawer-brand">
+        <img src="assets/herbvian_logo_transparent.png" alt="Herbvian Logo" class="mobile-drawer-logo-img">
+      </div>
+      <button class="mobile-drawer-close" onclick="closeMobileNav()" aria-label="Close menu">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="mobile-drawer-body">
+      <!-- Main Nav Links -->
+      <div class="mobile-nav-group">
+        <div class="mobile-nav-group-label">Explore Herbvian</div>
+        <button class="mobile-nav-item active" data-page="home" onclick="mobileSwitchNav('home')">
+          <span class="mobile-item-icon"><i class="fa-solid fa-house"></i></span>
+          <span class="mobile-item-title">Home</span>
+          <i class="fa-solid fa-chevron-right mobile-arrow"></i>
+        </button>
+        <button class="mobile-nav-item" data-page="product" onclick="mobileSwitchNav('product')">
+          <span class="mobile-item-icon"><i class="fa-solid fa-spray-can-sparkles"></i></span>
+          <span class="mobile-item-title">Products</span>
+          <span class="mobile-item-badge">Bestseller</span>
+          <i class="fa-solid fa-chevron-right mobile-arrow"></i>
+        </button>
+        <button class="mobile-nav-item" data-page="benefits" onclick="mobileSwitchNav('benefits')">
+          <span class="mobile-item-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+          <span class="mobile-item-title">Product Benefits</span>
+          <span class="mobile-item-badge new">Guides</span>
+          <i class="fa-solid fa-chevron-right mobile-arrow"></i>
+        </button>
+        <button class="mobile-nav-item" data-page="our-story" onclick="mobileSwitchNav('our-story')">
+          <span class="mobile-item-icon"><i class="fa-solid fa-leaf"></i></span>
+          <span class="mobile-item-title">Our Story &amp; Heritage</span>
+          <i class="fa-solid fa-chevron-right mobile-arrow"></i>
+        </button>
+        <button class="mobile-nav-item" data-page="track-order" onclick="mobileSwitchNav('track-order')">
+          <span class="mobile-item-icon"><i class="fa-solid fa-location-dot"></i></span>
+          <span class="mobile-item-title">Track Order</span>
+          <i class="fa-solid fa-chevron-right mobile-arrow"></i>
+        </button>
+        <button class="mobile-nav-item" data-page="contact" onclick="mobileSwitchNav('contact')">
+          <span class="mobile-item-icon"><i class="fa-solid fa-envelope"></i></span>
+          <span class="mobile-item-title">Contact Us</span>
+          <i class="fa-solid fa-chevron-right mobile-arrow"></i>
+        </button>
+      </div>
+
+      <!-- Quick Preferences & Support -->
+      <div class="mobile-nav-group">
+        <div class="mobile-nav-group-label">Currency &amp; Support</div>
+        <div class="mobile-currency-select-box">
+          <i class="fa-solid fa-globe"></i>
+          <span>Currency:</span>
+          <select id="mobileCurrencySelect" onchange="changeCurrency(this.value)">
+            <option value="USD" selected>🇺🇸 USD ($)</option>
+            <option value="CAD">🇨🇦 CAD ($)</option>
+            <option value="EUR">🇪🇺 EUR (€)</option>
+            <option value="GBP">🇬🇧 GBP (£)</option>
+            <option value="VND">🇻🇳 VND (₫)</option>
+          </select>
+        </div>
+        <a href="tel:+17037324825" class="mobile-contact-line">
+          <i class="fa-solid fa-phone"></i>
+          <span>+1 703-732-4825 (24/7 WhatsApp)</span>
+        </a>
+        <a href="mailto:support@herbvian.com" class="mobile-contact-line">
+          <i class="fa-regular fa-envelope"></i>
+          <span>support@herbvian.com</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Footer -->
+    <div class="mobile-drawer-footer">
+      <button class="btn btn-primary btn-block btn-mobile-auth" onclick="openAuthModal('login'); closeMobileNav();">
+        <i class="fa-regular fa-user"></i> Sign In / Create Account
+      </button>
+      <p class="mobile-drawer-subinfo">🌿 100% Vietnamese Loofah • Zero Microplastics</p>
+    </div>
+  </aside>
+
   <!-- Live Search Bar Floating Overlay -->
   <div class="search-overlay" id="searchOverlay">
     <div class="search-box-card">
@@ -181,14 +315,15 @@
               <div class="slide-content">
                 <div class="slide-container hero-grid-layout">
                   
-                  <!-- Left: Cascading Text Elements (Top Subtitle -> Title -> Cyan Button) -->
+                  <!-- Left: Cascading Text Elements -->
                   <div class="hero-text-side">
-                    <p class="hero-eyebrow-text">
-                      Ditch the flimsy plastic puffs for a rugged, handmade texture that exfoliates exactly where you need it.
-                    </p>
+                    <span class="hero-sub-badge"><i class="fa-solid fa-leaf"></i> 100% Vietnamese Loofah</span>
                     <h1 class="hero-main-heading">
                       Real Grit, Smooth Finish
                     </h1>
+                    <p class="hero-description">
+                      Ditch the flimsy plastic puffs for a rugged, handmade texture that exfoliates exactly where you need it.
+                    </p>
                     <div class="hero-action-box">
                       <button class="btn btn-hero-cyan" onclick="switchNav('product')">
                         Level Up Your Shower
@@ -227,12 +362,13 @@
                   
                   <!-- Left: Cascading Text Elements -->
                   <div class="hero-text-side">
-                    <p class="hero-eyebrow-text">
-                      Featuring a secure elastic hand strap and durable cotton trim, this scrubber is engineered for heavy-duty use.
-                    </p>
+                    <span class="hero-sub-badge"><i class="fa-solid fa-spa"></i> Advanced Exfoliation</span>
                     <h2 class="hero-main-heading">
                       Built for the Modern Man
                     </h2>
+                    <p class="hero-description">
+                      Featuring a secure elastic hand strap and durable cotton trim, this scrubber is engineered for heavy-duty use.
+                    </p>
                     <div class="hero-action-box">
                       <button class="btn btn-hero-cyan" onclick="switchNav('product')">
                         Upgrade Your Grooming
@@ -271,12 +407,13 @@
                   
                   <!-- Left: Cascading Text Elements -->
                   <div class="hero-text-side">
-                    <p class="hero-eyebrow-text">
-                      Handmade • Unbleached • Sustainable Vietnamese Natural Loofah with dual hanging loops.
-                    </p>
+                    <span class="hero-sub-badge"><i class="fa-solid fa-shield-halved"></i> Pure Eco Origin</span>
                     <h2 class="hero-main-heading">
                       Herbvian Men's Ultra Loofah
                     </h2>
+                    <p class="hero-description">
+                      Handmade • Unbleached • Sustainable Vietnamese Natural Loofah with dual hanging loops.
+                    </p>
                     <div class="hero-action-box">
                       <button class="btn btn-hero-cyan" onclick="switchNav('product')">
                         Shop The 2-Pack ($9.99)
@@ -373,10 +510,91 @@
           </div>
 
           <!-- View All CTA -->
-          <div class="text-center mt-5">
-            <button class="btn btn-outline btn-lg" onclick="switchNav('product')">
-              View All Sustainable Products <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
+          <div class="text-center mt-4">
+            <button class="btn btn-outline btn-view-all" onclick="switchNav('product')">
+              View All Products <i class="fa-solid fa-arrow-right" style="margin-left: 6px;"></i>
             </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- PURELY ORGANIC FEATURE SHOWCASE (IMAGE 1)      -->
+      <!-- ============================================== -->
+      <section class="section purely-organic-section" id="purely-organic-section">
+        <div class="container">
+          <div class="section-header text-center">
+            <span class="sub-badge"><i class="fa-solid fa-leaf"></i> 100% BOTANICAL FIBERS</span>
+            <h2 class="section-title">Purely Organic</h2>
+            <p class="section-subtitle">Crafted from mature Vietnamese dried loofahs to bring effortless physical exfoliation, ergonomic handling, and plastic-free wellness to your daily shower routine.</p>
+          </div>
+
+          <!-- 3-Column Infographic Layout Matching User Image 1 -->
+          <div class="organic-feature-layout">
+            <!-- Left Column: 2 Features -->
+            <div class="organic-feature-col left-col">
+              <div class="organic-feature-item">
+                <div class="feature-icon-circle">
+                  <!-- Water drop / leaf outline -->
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+                  </svg>
+                </div>
+                <h4 class="feature-item-title">Purely Organic</h4>
+                <p class="feature-item-desc">Crafted from unbleached plant fibers for a chemical-free clean.</p>
+              </div>
+
+              <div class="organic-feature-item">
+                <div class="feature-icon-circle">
+                  <!-- Hand grip outline -->
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/>
+                    <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/>
+                    <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/>
+                    <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>
+                  </svg>
+                </div>
+                <h4 class="feature-item-title">Superior Handling</h4>
+                <p class="feature-item-desc">Built-in elastic strap ensures a firm grip even when soapy.</p>
+              </div>
+            </div>
+
+            <!-- Center Column: Infographic Card with Product Callouts (Visual Only) -->
+            <div class="organic-center-card-wrap">
+              <div class="organic-center-card">
+                <img src="assets/loofah_feature_card.png" alt="Proudly made from Natural Vietnamese Loofah" class="organic-card-img">
+              </div>
+            </div>
+
+            <!-- Right Column: 2 Features -->
+            <div class="organic-feature-col right-col">
+              <div class="organic-feature-item">
+                <div class="feature-icon-circle">
+                  <!-- Shower head outline -->
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4l2.5 2.5"/>
+                    <path d="M13.5 13.5L16 16"/>
+                    <path d="M12 9a3 3 0 0 1 4.24 4.24"/>
+                    <circle cx="12" cy="18" r="1" fill="currentColor"/>
+                    <circle cx="9" cy="21" r="1" fill="currentColor"/>
+                    <circle cx="15" cy="21" r="1" fill="currentColor"/>
+                  </svg>
+                </div>
+                <h4 class="feature-item-title">Deep Exfoliation</h4>
+                <p class="feature-item-desc">Effortlessly removes dead skin cells and unclogs stubborn pores.</p>
+              </div>
+
+              <div class="organic-feature-item">
+                <div class="feature-icon-circle">
+                  <!-- Wind / air-drying outline -->
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/>
+                  </svg>
+                </div>
+                <h4 class="feature-item-title">Hygienic Design</h4>
+                <p class="feature-item-desc">Integrated cotton loops allow for fast air-drying between uses.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -483,9 +701,9 @@
       <section class="newsletter-section">
         <div class="container newsletter-box">
           <div class="newsletter-content">
-            <span class="sub-badge" style="background: rgba(255,255,255,0.2); color: #fff;">WELCOME OFFER</span>
-            <h2>Get 15% OFF Your First Order + Free Eco Living E-Book</h2>
-            <p>Join the Herbvian circular living community. Receive exclusive discounts, plant care tips, and zero-waste bathroom recipes.</p>
+            <span class="sub-badge newsletter-badge">WELCOME OFFER</span>
+            <h2>Get 15% OFF + Free Eco E-Book</h2>
+            <p>Join Herbvian for exclusive discounts, natural care tips, and zero-waste bathroom recipes.</p>
           </div>
           <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
             <input type="email" placeholder="Enter your email address..." required id="newsletterEmail">
@@ -504,7 +722,6 @@
         <div class="page-hero-banner">
           <span class="sub-badge"><i class="fa-solid fa-leaf"></i> ZERO-WASTE CATALOG</span>
           <h1>Herbvian All-Natural Loofah Collection</h1>
-          <p>Carefully selected organic plant fibers for personal wellness, radiant skin, and sustainable kitchen care.</p>
         </div>
 
         <!-- Filter & Search Toolbar -->
@@ -917,7 +1134,374 @@
     </section>
 
     <!-- ============================================== -->
-    <!-- TAB 3: BLOGS & STORY PAGE                      -->
+    <!-- TAB: PRODUCT BENEFITS & USAGE GUIDE PAGE       -->
+    <!-- ============================================== -->
+    <section class="page-view" id="page-benefits">
+      <div class="container section">
+        <!-- Page Hero Header -->
+        <div class="page-hero-banner text-center">
+          <span class="sub-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> COMPREHENSIVE USAGE GUIDE</span>
+          <h1>Product Benefits & Application Guide</h1>
+          <p class="section-subtitle max-w-700 mx-auto">Discover the targeted dermatological and household benefits of each Herbvian botanical creation, complete with instructions for first-time use, care, and circular composting.</p>
+        </div>
+
+        <!-- Filter / Quick Navigation Tabs for Guides -->
+        <div class="benefits-filter-bar">
+          <button class="benefit-tab-btn active" onclick="filterBenefitCards('all', this)"><i class="fa-solid fa-layer-group"></i> All Guides (6)</button>
+          <button class="benefit-tab-btn" onclick="filterBenefitCards('bath', this)"><i class="fa-solid fa-shower"></i> Shower & Body Care</button>
+          <button class="benefit-tab-btn" onclick="filterBenefitCards('kitchen', this)"><i class="fa-solid fa-utensils"></i> Zero-Waste Kitchen</button>
+          <button class="benefit-tab-btn" onclick="filterBenefitCards('accessories', this)"><i class="fa-solid fa-spa"></i> Soap Savers & Care</button>
+        </div>
+
+        <!-- Comprehensive Guides Grid -->
+        <div class="benefits-guide-grid" id="benefitsGuideGrid">
+          <!-- Guide 1: 6pcs Pack -->
+          <article class="benefit-card" data-category="bath">
+            <div class="benefit-card-media">
+              <img src="assets/6pcs_loofah_main.png" alt="6pcs Natural Vietnamese Loofah Sponge" loading="lazy">
+              <span class="benefit-tag"><i class="fa-solid fa-seedling"></i> Multi-Purpose Family Pack</span>
+            </div>
+            <div class="benefit-card-content">
+              <div class="benefit-header">
+                <span class="benefit-product-cat">Body Care & Home Living</span>
+                <h3 class="benefit-product-name">6pcs Natural Vietnamese Loofah Sponges</h3>
+                <p class="benefit-summary">Compressed multi-pack designed for whole-family daily showers, spa buffing, and multi-surface cleaning.</p>
+              </div>
+
+              <!-- Key Benefits -->
+              <div class="benefit-block">
+                <h4 class="benefit-block-title"><i class="fa-solid fa-circle-check text-green"></i> Key Benefits:</h4>
+                <ul class="benefit-list">
+                  <li><strong>Instant Soft Expansion:</strong> Expands up to 300% in warm water into a soft, springy 3D fibrous cushion that never scratches delicate skin.</li>
+                  <li><strong>Natural Lymph & Blood Flow:</strong> Circular motion gently scrubs away keratinized dead cells, unclogging pores and promoting collagen renewal.</li>
+                  <li><strong>Scratch-Safe Household Cleaning:</strong> Tough on greasy dinnerware, delicate on non-stick cookware and polished countertops.</li>
+                  <li><strong>Hygienic Cotton Loop:</strong> Convenient hanging twine ensures fast air-drying, eliminating stale odors and mildew.</li>
+                </ul>
+              </div>
+
+              <!-- How to Use -->
+              <div class="benefit-block usage-block">
+                <h4 class="benefit-block-title"><i class="fa-solid fa-hand-holding-droplet text-green"></i> Step-by-Step Usage:</h4>
+                <ol class="usage-steps-list">
+                  <li><span>1</span> <strong>Hydrate:</strong> Soak in warm water for 20–30 seconds until the compressed loofah softens and plumps up.</li>
+                  <li><span>2</span> <strong>Lather:</strong> Apply your favorite body wash, bar soap, or organic dish soap; squeeze lightly to build a thick, luxurious lather.</li>
+                  <li><span>3</span> <strong>Cleanse:</strong> Gently glide across the body in circular motions, or wipe down dishes with light pressure.</li>
+                  <li><span>4</span> <strong>Hang Dry:</strong> Rinse out remaining suds thoroughly, squeeze out excess water, and hang in a breezy space.</li>
+                </ol>
+              </div>
+
+              <div class="benefit-card-footer">
+                <span class="eco-comp-badge"><i class="fa-solid fa-recycle"></i> 100% Backyard Compostable</span>
+                <button class="btn btn-outline btn-sm" onclick="openProductDetail(100)">View Product Details <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Guide 2: Round Bath Sponge with Strap -->
+          <article class="benefit-card" data-category="bath">
+            <div class="benefit-card-media">
+              <img src="assets/thoughtful_design.jpg" alt="Herbvian Organic Round Bath Sponge with Cotton Strap" loading="lazy">
+              <span class="benefit-tag"><i class="fa-solid fa-star"></i> Daily Shower Essential</span>
+            </div>
+            <div class="benefit-card-content">
+              <div class="benefit-header">
+                <span class="benefit-product-cat">Personal Wellness & Shower</span>
+                <h3 class="benefit-product-name">Round Bath Sponge with Cotton Hand Strap</h3>
+                <p class="benefit-summary">Ergonomically shaped circular pad with an unbleached woven cotton strap for a secure, non-slip shower grip.</p>
+              </div>
+
+              <div class="benefit-block">
+                <h4 class="benefit-block-title"><i class="fa-solid fa-circle-check text-green"></i> Key Benefits:</h4>
+                <ul class="benefit-list">
+                  <li><strong>Slip-Free Control:</strong> Elasticated woven back strap keeps the sponge locked comfortably onto your hand, even when lathered in slippery shower oils.</li>
+                  <li><strong>Targeted Rough Patch Relief:</strong> Effectively softens dry elbows, knees, heels, and bumpy strawberry legs without chemical peels.</li>
+                  <li><strong>Zero Microplastic Shedding:</strong> Unlike synthetic mesh nylon poufs that degrade and wash down city drains, 100% plant fibers are eco-pure.</li>
+                </ul>
+              </div>
+
+              <div class="benefit-block usage-block">
+                <h4 class="benefit-block-title"><i class="fa-solid fa-hand-holding-droplet text-green"></i> Step-by-Step Usage:</h4>
+                <ol class="usage-steps-list">
+                  <li><span>1</span> <strong>Prep:</strong> Hold under the shower stream for 20 seconds to soften the natural fibers.</li>
+                  <li><span>2</span> <strong>Slip on:</strong> Slide your palm underneath the elastic cotton strap.</li>
+                  <li><span>3</span> <strong>Buff:</strong> Work from your feet and arms inward toward the chest to stimulate healthy lymphatic circulation.</li>
+                  <li><span>4</span> <strong>Rinse & Hang:</strong> Rinse clean and hang from the integrated cotton loop to air dry between showers.</li>
+                </ol>
+              </div>
+
+              <div class="benefit-card-footer">
+                <span class="eco-comp-badge"><i class="fa-solid fa-recycle"></i> 100% Backyard Compostable</span>
+                <button class="btn btn-outline btn-sm" onclick="openProductDetail(1)">View Product Details <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Guide 3: Back Scrubber Strap -->
+          <article class="benefit-card" data-category="bath">
+            <div class="benefit-card-media">
+              <img src="assets/advanced_exfoliation.jpg" alt="Herbvian Natural Loofah Back Scrubber Strap" loading="lazy">
+              <span class="benefit-tag"><i class="fa-solid fa-shield-halved"></i> Bacne Solution & Hard-to-Reach</span>
+            </div>
+            <div class="benefit-card-content">
+              <div class="benefit-header">
+                <span class="benefit-product-cat">Deep Pore Body Cleansing</span>
+                <h3 class="benefit-product-name">28" Natural Loofah Back Scrubber Strap</h3>
+                <p class="benefit-summary">Extra-long dual-handle scrubber engineered to reach shoulders, lower back, and shoulder blades effortlessly.</p>
+              </div>
+
+              <div class="benefit-block">
+                <h4 class="benefit-block-title"><i class="fa-solid fa-circle-check text-green"></i> Key Benefits:</h4>
+                <ul class="benefit-list">
+                  <li><strong>Dual-Action Surfaces:</strong> One side features textured organic loofah lattice for deep back pore cleansing; the reverse features soft waffle-weave cotton for gentle lathering.</li>
+                  <li><strong>Eliminates Back Acne (Bacne):</strong> Buffs away sweat residue, excess sebum, and trapped impurities across hard-to-reach spinal zones.</li>
+                  <li><strong>Ergonomic Reach:</strong> 28-inch reach with reinforced webbed cotton handles eliminates awkward stretching and twisting.</li>
+                </ul>
+              </div>
+
+              <div class="benefit-block usage-block">
+                <h4 class="benefit-block-title"><i class="fa-solid fa-hand-holding-droplet text-green"></i> Step-by-Step Usage:</h4>
+                <ol class="usage-steps-list">
+                  <li><span>1</span> <strong>Wet & Lather:</strong> Wet the scrubber completely; apply soap or shower gel down the center loofah band.</li>
+                  <li><span>2</span> <strong>Grip Handles:</strong> Hold one handle with each hand, draping the band diagonally or horizontally across your back.</li>
+                  <li><span>3</span> <strong>Glide Motion:</strong> Use a seesaw motion to buff shoulder blades, mid-back, and waistline smoothly.</li>
+                  <li><span>4</span> <strong>Dry:</strong> Hang over a shower hook or towel bar by both handles.</li>
+                </ol>
+              </div>
+
+              <div class="benefit-card-footer">
+                <span class="eco-comp-badge"><i class="fa-solid fa-recycle"></i> 100% Backyard Compostable</span>
+                <button class="btn btn-outline btn-sm" onclick="openProductDetail(2)">View Product Details <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Guide 4: Kitchen Loofahs -->
+          <article class="benefit-card" data-category="kitchen">
+            <div class="benefit-card-media">
+              <img src="assets/prod_dish_sponge.jpg" alt="Herbvian Zero-Waste Kitchen Loofah Scrubbers" loading="lazy">
+              <span class="benefit-tag"><i class="fa-solid fa-utensils"></i> Zero-Waste Kitchen Care</span>
+            </div>
+            <div class="benefit-card-content">
+              <div class="benefit-header">
+                <span class="benefit-product-cat">Sustainable Kitchen Cleaning</span>
+                <h3 class="benefit-product-name">Zero-Waste Kitchen Loofah Scrubbers (Pack of 3)</h3>
+                <p class="benefit-summary">Nature's resilient dish scrubber that eliminates smelly plastic sponges and cleans grease without scratching.</p>
+              </div>
+
+              <div class="benefit-block">
+                <h4 class="benefit-block-title"><i class="fa-solid fa-circle-check text-green"></i> Key Benefits:</h4>
+                <ul class="benefit-list">
+                  <li><strong>Scratch-Safe Protection:</strong> Safely scours non-stick Teflon cookware, enameled Dutch ovens, delicate glassware, and cast-iron without abrasion.</li>
+                  <li><strong>Grease-Cutting Honeycomb:</strong> Dense open-cell loofah capillaries grab cooking oils and soap scum, rinsing clean in seconds with zero lingering grease.</li>
+                  <li><strong>Odor & Mildew Free:</strong> Dries up to 3x faster than polyurethane foam sponges, stopping bacterial sour odors permanently.</li>
+                </ul>
+              </div>
+
+              <div class="benefit-block usage-block">
+                <h4 class="benefit-block-title"><i class="fa-solid fa-hand-holding-droplet text-green"></i> Step-by-Step Usage:</h4>
+                <ol class="usage-steps-list">
+                  <li><span>1</span> <strong>Wet Pad:</strong> Hold under running warm water; watch it expand into a flexible rectangular sponge.</li>
+                  <li><span>2</span> <strong>Wash Dishes:</strong> Add 1–2 drops of eco dish soap; scrub plates, pans, cutting boards, and sinks.</li>
+                  <li><span>3</span> <strong>Rinse Clean:</strong> Squeeze under running water to flush out food particles.</li>
+                  <li><span>4</span> <strong>Pro Tip:</strong> Can be sanitized in boiling water or the top rack of the dishwasher once weekly.</li>
+                </ol>
+              </div>
+
+              <div class="benefit-card-footer">
+                <span class="eco-comp-badge"><i class="fa-solid fa-recycle"></i> 100% Backyard Compostable</span>
+                <button class="btn btn-outline btn-sm" onclick="openProductDetail(3)">View Product Details <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Guide 5: Soap Dish Mat -->
+          <article class="benefit-card" data-category="accessories">
+            <div class="benefit-card-media">
+              <img src="assets/prod_soap_tray.jpg" alt="Herbvian Artisan Loofah Soap Dish & Saver Mat" loading="lazy">
+              <span class="benefit-tag"><i class="fa-solid fa-soap"></i> Soap Saver & Aerator</span>
+            </div>
+            <div class="benefit-card-content">
+              <div class="benefit-header">
+                <span class="benefit-product-cat">Bathroom Counter Essential</span>
+                <h3 class="benefit-product-name">Artisan Loofah Soap Dish & Saver Mat</h3>
+                <p class="benefit-summary">A thick natural loofah slice that provides 360° airflow beneath handmade bar soaps, doubling their lifespan.</p>
+              </div>
+
+              <div class="benefit-block">
+                <h4 class="benefit-block-title"><i class="fa-solid fa-circle-check text-green"></i> Key Benefits:</h4>
+                <ul class="benefit-list">
+                  <li><strong>Stops Mushy Soap Waste:</strong> Elevates soap bars off puddle-prone counters so water drains freely, keeping your soap bar firm and lasting twice as long.</li>
+                  <li><strong>2-in-1 Sink Cleaner:</strong> As the mat absorbs leftover soap runoff, you can pick it up to quickly scrub bathroom sinks and chrome faucets clean!</li>
+                  <li><strong>Zero Plastic Footprint:</strong> Completely eliminates ugly plastic and silicone soap trays that crack and collect grimy slime.</li>
+                </ul>
+              </div>
+
+              <div class="benefit-block usage-block">
+                <h4 class="benefit-block-title"><i class="fa-solid fa-hand-holding-droplet text-green"></i> Step-by-Step Usage:</h4>
+                <ol class="usage-steps-list">
+                  <li><span>1</span> <strong>Place:</strong> Set the dry loofah pad directly beside your bathroom sink or shower ledge.</li>
+                  <li><span>2</span> <strong>Rest Soap:</strong> Place your bar soap on top after each wash.</li>
+                  <li><span>3</span> <strong>Clean with It:</strong> Once every week or two, wet the soap-soaked mat and wipe down the sink basin, then rinse and let dry.</li>
+                </ol>
+              </div>
+
+              <div class="benefit-card-footer">
+                <span class="eco-comp-badge"><i class="fa-solid fa-recycle"></i> 100% Backyard Compostable</span>
+                <button class="btn btn-outline btn-sm" onclick="openProductDetail(4)">View Product Details <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Guide 6: Whole Dried Loofah Gourd -->
+          <article class="benefit-card" data-category="kitchen">
+            <div class="benefit-card-media">
+              <img src="assets/prod_back_scrubber.jpg" alt="Herbvian Whole Dried Organic Loofah Sponge" loading="lazy">
+              <span class="benefit-tag"><i class="fa-solid fa-scissors"></i> Raw & Customizable</span>
+            </div>
+            <div class="benefit-card-content">
+              <div class="benefit-header">
+                <span class="benefit-product-cat">Raw Botanical Harvest</span>
+                <h3 class="benefit-product-name">Whole Dried Organic Loofah Gourd (Pack of 2)</h3>
+                <p class="benefit-summary">Complete whole unbleached mature loofah cylinders straight from the vine, ready for customized slicing and DIY crafting.</p>
+              </div>
+
+              <div class="benefit-block">
+                <h4 class="benefit-block-title"><i class="fa-solid fa-circle-check text-green"></i> Key Benefits:</h4>
+                <ul class="benefit-list">
+                  <li><strong>Custom Sizing:</strong> Cut with kitchen scissors into custom-sized pads for facial scrubbers, body scrubbers, plant pot drainage, or soap molds.</li>
+                  <li><strong>Peak Natural Density:</strong> Sourced from prime-harvest Vietnamese loofahs with thick, bouncy inner cellulose fibers.</li>
+                  <li><strong>100% Untouched:</strong> Zero chemicals, zero dyes, zero artificial treatments — just sun, water, and organic plant harvest.</li>
+                </ul>
+              </div>
+
+              <div class="benefit-block usage-block">
+                <h4 class="benefit-block-title"><i class="fa-solid fa-hand-holding-droplet text-green"></i> Step-by-Step Usage:</h4>
+                <ol class="usage-steps-list">
+                  <li><span>1</span> <strong>Measure & Cut:</strong> Use a bread knife or sturdy kitchen shears to cut crosswise into 1-inch or 2-inch slices.</li>
+                  <li><span>2</span> <strong>Hydrate:</strong> Soak slices in warm water for 30 seconds to expand into lush cylindrical sponges.</li>
+                  <li><span>3</span> <strong>Use & Enjoy:</strong> Use for body, dishes, pet grooming, or embeds for homemade goat milk soap bars.</li>
+                </ol>
+              </div>
+
+              <div class="benefit-card-footer">
+                <span class="eco-comp-badge"><i class="fa-solid fa-recycle"></i> 100% Backyard Compostable</span>
+                <button class="btn btn-outline btn-sm" onclick="openProductDetail(6)">View Product Details <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Universal Care, Maintenance & Composting Card -->
+        <div class="universal-care-banner">
+          <div class="care-banner-icon"><i class="fa-solid fa-seedling"></i></div>
+          <div class="care-banner-text">
+            <h3>How to Care for & Compost Any Herbvian Loofah</h3>
+            <p><strong>First Use:</strong> Natural loofahs arrive compressed and dry. Immerse in warm water for 20 seconds to activate their natural bounce and softness.</p>
+            <p><strong>Hygiene:</strong> Always hang in a well-ventilated spot. Once every 2 weeks, sanitize by soaking in warm water with a splash of apple cider vinegar or boiling water for 3 minutes.</p>
+            <p><strong>End of Life:</strong> When worn out after 3–6 months, cut into small strips and bury in garden soil or compost. They break down completely in 30 days, enriching your plants with organic matter!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- TAB: OUR STORY PAGE                            -->
+    <!-- ============================================== -->
+    <section class="page-view" id="page-our-story">
+      <div class="container section">
+        <!-- Story Hero Banner -->
+        <div class="page-hero-banner text-center">
+          <span class="sub-badge"><i class="fa-solid fa-leaf"></i> HERBVIAN ROOTS & HERITAGE</span>
+          <h1>From Vietnamese Soil to Conscious Global Showers</h1>
+          <p class="section-subtitle max-w-700 mx-auto">Discover the generational craft, ethical farming partnerships, and zero-plastic mission behind every Herbvian botanical creation.</p>
+        </div>
+
+        <!-- Story Visual Narrative Section -->
+        <div class="story-narrative-card">
+          <div class="story-narrative-grid">
+            <div class="story-narrative-img-wrap">
+              <img src="assets/blog_loofah_farm.jpg" alt="Vietnamese Loofah Farm - Herbvian Heritage" class="story-narrative-img">
+              <div class="story-origin-tag">
+                <span class="flag-vn">VN</span>
+                <span>Long An & Mekong Delta, Vietnam</span>
+              </div>
+            </div>
+            <div class="story-narrative-body">
+              <span class="sub-badge"><i class="fa-solid fa-earth-americas"></i> THE GENESIS</span>
+              <h2>Why We Chose To Rediscover Nature's Original Sponge</h2>
+              <p>Every year, humanity discards more than <strong>2 billion synthetic polyurethane sponges and plastic bath poufs</strong>. These petroleum-based products don't just sit in landfills for 500+ years — every time you use them, friction sheds invisible microplastic fragments straight down your drain and into municipal waterways, marine habitats, and the food chain.</p>
+              <p>At <strong>Herbvian</strong>, we knew there was a timeless, elegant, and completely regenerative alternative: the mature gourd of <em>Luffa Aegyptiaca</em>, a climbing vine cultivated across Vietnam for over a thousand years.</p>
+              <div class="story-quote-box">
+                <i class="fa-solid fa-quote-left"></i>
+                <p>“We don't manufacture plastic sponges in factories. We grow 100% compostable botanical sponges under the tropical sun, nurtured by rain and rich alluvial soil.”</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- The 3 Pillars of Our Vietnamese Heritage -->
+        <div class="story-pillars-grid">
+          <div class="story-pillar-item">
+            <div class="pillar-icon"><i class="fa-solid fa-sun-plant-wilt"></i></div>
+            <h3>1. Alluvial Soil & Rain</h3>
+            <p>Our loofahs are cultivated along the fertile floodplains of the Mekong and Red River deltas. Nurtured exclusively by natural monsoon rainfall and rich alluvial silt, without synthetic chemical fertilizers or pesticide sprays.</p>
+          </div>
+          <div class="story-pillar-item">
+            <div class="pillar-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+            <h3>2. Generational Handcraft</h3>
+            <p>Harvested by hand when mature gourds turn golden brown. Local Vietnamese artisans hand-peel, wash with pure river water, and sun-dry each sponge under the tropical sun — zero chlorine bleach, zero chemical brighteners.</p>
+          </div>
+          <div class="story-pillar-item">
+            <div class="pillar-icon"><i class="fa-solid fa-seedling"></i></div>
+            <h3>3. Circular Earth Lifecycle</h3>
+            <p>From unbleached cotton hanging straps to 100% recyclable biodegradable kraft mailers, every Herbvian piece returns completely to the earth — backyard compostable within 30 to 45 days.</p>
+          </div>
+        </div>
+
+        <!-- Environmental Impact Counter -->
+        <div class="story-impact-strip">
+          <div class="impact-stat">
+            <span class="impact-num">120,000+</span>
+            <span class="impact-label">Plastic Sponges Prevented</span>
+          </div>
+          <div class="impact-divider"></div>
+          <div class="impact-stat">
+            <span class="impact-num">0%</span>
+            <span class="impact-label">Microplastics & Bleach</span>
+          </div>
+          <div class="impact-divider"></div>
+          <div class="impact-stat">
+            <span class="impact-num">30 Days</span>
+            <span class="impact-label">Backyard Soil Biodegradation</span>
+          </div>
+          <div class="impact-divider"></div>
+          <div class="impact-stat">
+            <span class="impact-num">25+</span>
+            <span class="impact-label">Countries Reached Globally</span>
+          </div>
+        </div>
+
+        <!-- Farming Community Partnership Feature -->
+        <div class="community-feature-box">
+          <div class="community-text">
+            <span class="sub-badge"><i class="fa-solid fa-handshake-simple"></i> ETHICAL COMMERCE</span>
+            <h2>Fair Trade Partnerships With Vietnamese Farming Families</h2>
+            <p>By bypassing predatory commodity brokers and partnering directly with Vietnamese multi-generational farming cooperatives, Herbvian ensures growers receive up to <strong>3x the traditional local market rate</strong> for their harvests. This empowers rural families to preserve heritage agricultural knowledge, provide education for their children, and invest in regenerative land stewardship.</p>
+            <div class="mt-4">
+              <button class="btn btn-primary" onclick="switchNav('product')">
+                Explore Sustainable Products <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
+              </button>
+            </div>
+          </div>
+          <div class="community-img-wrap">
+            <img src="assets/banner_slide2.png" alt="Empowering Vietnamese Growers" class="community-img">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================== -->
+    <!-- TAB: BLOGS JOURNAL                             -->
     <!-- ============================================== -->
     <section class="page-view" id="page-blogs">
       <div class="container section">
@@ -1028,56 +1612,85 @@
         <div class="page-hero-banner">
           <span class="sub-badge"><i class="fa-solid fa-headset"></i> WE ARE HERE TO HELP</span>
           <h1>Get in Touch With Herbvian</h1>
-          <p>Have questions about our plant-based loofahs, wholesale distribution, or an existing order? Reach out anytime.</p>
+        </div>
+
+        <!-- WE'D LOVE TO HEAR FROM YOU BANNER (IMAGE 2) -->
+        <div class="contact-hero-banner-card">
+          <img src="assets/contact_banner_card.png" alt="We'd Love to Hear from You - Contact Herbvian" class="contact-hero-img">
         </div>
 
         <div class="contact-grid">
-          <!-- Official Business Information (From Screenshot) -->
+          <!-- Direct Quick Links Panel (No Redundant Text - Clean Actionable Links) -->
           <div class="contact-info-panel">
-            <h3>Herbvian LLC</h3>
-            <p>Sustainable plant-based wellness crafted in Vietnam, supported by our US customer care headquarters in Florida.</p>
+            <div>
+              <h3 class="channels-title"><i class="fa-solid fa-bolt text-green"></i> Direct Channels</h3>
+              <p class="channels-sub">All details are shown in the banner above. Click any channel below to connect directly:</p>
 
-            <div class="contact-methods">
-              <div class="c-method-item">
-                <div class="c-icon"><i class="fa-solid fa-location-dot"></i></div>
-                <div>
-                  <strong>Headquarters Address:</strong>
-                  <p>7901 4th St N Ste 300, St. Petersburg, FL 33702, United States</p>
-                </div>
-              </div>
+              <div class="channel-links-grid">
+                <!-- Amazon Store -->
+                <a href="https://www.amazon.com" target="_blank" rel="noopener noreferrer" class="channel-link-card amazon" title="Visit Herbvian on Amazon">
+                  <div class="channel-icon-wrap"><i class="fa-brands fa-amazon"></i></div>
+                  <div class="channel-info">
+                    <strong>Amazon.store</strong>
+                    <span>Official Verified Store</span>
+                  </div>
+                  <i class="fa-solid fa-arrow-up-right-from-square channel-arrow"></i>
+                </a>
 
-              <div class="c-method-item">
-                <div class="c-icon"><i class="fa-solid fa-earth-americas"></i></div>
-                <div>
-                  <strong>Origin & Harvesting:</strong>
-                  <p>Origin: Vietnam (VN) • Long An & Mekong Delta Organic Farms</p>
-                </div>
-              </div>
+                <!-- WhatsApp -->
+                <a href="https://wa.me/17037324825" target="_blank" rel="noopener noreferrer" class="channel-link-card whatsapp" title="Chat with Herbvian on WhatsApp">
+                  <div class="channel-icon-wrap"><i class="fa-brands fa-whatsapp"></i></div>
+                  <div class="channel-info">
+                    <strong>WhatsApp.com</strong>
+                    <span>Direct 24/7 Chat Support</span>
+                  </div>
+                  <i class="fa-solid fa-arrow-up-right-from-square channel-arrow"></i>
+                </a>
 
-              <div class="c-method-item">
-                <div class="c-icon"><i class="fa-solid fa-phone-volume"></i></div>
-                <div>
-                  <strong>Customer Support Hotline:</strong>
-                  <p><strong>+1 815-669-9699</strong> (Mon - Sat, 9am - 6pm EST)</p>
-                </div>
-              </div>
+                <!-- Call Phone -->
+                <a href="tel:+17037324825" class="channel-link-card phone" title="Call Customer Support">
+                  <div class="channel-icon-wrap"><i class="fa-solid fa-phone"></i></div>
+                  <div class="channel-info">
+                    <strong>Call Hotline</strong>
+                    <span>+1 703-732-4825</span>
+                  </div>
+                  <i class="fa-solid fa-arrow-up-right-from-square channel-arrow"></i>
+                </a>
 
-              <div class="c-method-item">
-                <div class="c-icon"><i class="fa-solid fa-envelope"></i></div>
-                <div>
-                  <strong>Email Support:</strong>
-                  <p>support@herbvian.com | Official Web: herbvian.com</p>
-                </div>
+                <!-- Email -->
+                <a href="mailto:support@herbvian.com" class="channel-link-card email" title="Send Email">
+                  <div class="channel-icon-wrap"><i class="fa-regular fa-envelope"></i></div>
+                  <div class="channel-info">
+                    <strong>Email Support</strong>
+                    <span>support@herbvian.com</span>
+                  </div>
+                  <i class="fa-solid fa-arrow-up-right-from-square channel-arrow"></i>
+                </a>
+
+                <!-- Google Maps Location -->
+                <a href="https://maps.google.com/?q=9117+Andrew+Dr,+Manassas+Park,+VA+2011" target="_blank" rel="noopener noreferrer" class="channel-link-card location" title="Open Office on Google Maps">
+                  <div class="channel-icon-wrap"><i class="fa-solid fa-location-dot"></i></div>
+                  <div class="channel-info">
+                    <strong>Google Maps Location</strong>
+                    <span>9117 Andrew Dr, VA 2011</span>
+                  </div>
+                  <i class="fa-solid fa-arrow-up-right-from-square channel-arrow"></i>
+                </a>
               </div>
             </div>
 
-            <div class="contact-socials">
-              <h4>Follow Our Journey:</h4>
-              <div class="social-links">
-                <a href="https://instagram.com/herbvian.official" target="_blank" class="social-btn" title="Instagram: @herbvian.official"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://youtube.com/@Herbvian-169" target="_blank" class="social-btn" title="YouTube: @Herbvian-169"><i class="fa-brands fa-youtube"></i></a>
-                <a href="#" class="social-btn" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#" class="social-btn" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <div class="contact-socials-block">
+              <span class="socials-title">Follow Us:</span>
+              <div class="social-links-row">
+                <a href="https://instagram.com/herbvian.official" target="_blank" rel="noopener noreferrer" class="social-pill" title="Instagram: @herbvian.official">
+                  <i class="fa-brands fa-instagram"></i> Instagram
+                </a>
+                <a href="https://Herbvian.official" target="_blank" rel="noopener noreferrer" class="social-pill" title="Facebook: Herbvian.official">
+                  <i class="fa-brands fa-facebook-f"></i> Facebook
+                </a>
+                <a href="https://youtube.com/@Herbvian-169" target="_blank" rel="noopener noreferrer" class="social-pill" title="YouTube: @Herbvian-169">
+                  <i class="fa-brands fa-youtube"></i> YouTube
+                </a>
               </div>
             </div>
           </div>
@@ -1137,12 +1750,20 @@
     <div class="container footer-top">
       <!-- Col 1: About Us -->
       <div class="footer-col brand-col">
+        <div class="footer-brand-logo-wrap">
+          <img src="assets/herbvian_logo_cropped.png" alt="Herbvian Logo" class="footer-brand-logo-img">
+        </div>
         <h4 class="footer-heading">About Us</h4>
         <p class="footer-desc">
           Herbvian is a nature-inspired brand offering sustainable and eco-friendly products made from natural plant-based materials. We create simple, practical solutions for everyday living while promoting a healthier lifestyle.
         </p>
         <p class="footer-desc">
           Our natural loofah products are carefully selected and designed to support eco-conscious choices, from personal care routines to everyday household use.
+        </p>
+        <p class="mt-2">
+          <a href="#our-story" onclick="switchNav('our-story')" style="color: #69F0AE; font-weight: 600; text-decoration: underline; font-size: 0.9rem;">
+            Read Our Full Story <i class="fa-solid fa-arrow-right" style="font-size: 0.8rem; margin-left: 4px;"></i>
+          </a>
         </p>
       </div>
 
@@ -1151,13 +1772,14 @@
         <h4 class="footer-heading">Herbvian</h4>
         <p class="footer-subtext"><strong>Herbvian LLC</strong></p>
         <p class="footer-subtext">Origin: Vietnam <span class="flag-vn">VN</span></p>
-        <p class="footer-subtext"><i class="fa-solid fa-location-dot"></i> 7901 4th St N Ste 300, St. Petersburg, FL 33702</p>
+        <p class="footer-subtext"><i class="fa-solid fa-location-dot"></i> 9117 Andrew Dr, Manassas Park, VA 2011</p>
         <p class="footer-subtext"><i class="fa-solid fa-globe"></i> herbvian.com</p>
         <p class="footer-subtext"><i class="fa-regular fa-envelope"></i> support@herbvian.com</p>
 
         <div class="footer-social-wrap mt-3">
           <p class="footer-subtext"><strong>Follow us:</strong></p>
           <p class="footer-subtext"><i class="fa-brands fa-instagram"></i> Instagram: <strong>@herbvian.official</strong></p>
+          <p class="footer-subtext"><i class="fa-brands fa-facebook-f"></i> Facebook: <strong>Herbvian.official</strong></p>
           <p class="footer-subtext"><i class="fa-brands fa-youtube"></i> YouTube: <strong>@Herbvian-169</strong></p>
         </div>
       </div>
@@ -1169,12 +1791,13 @@
         <ul class="footer-bullet-list">
           <li>Business: Herbvian</li>
           <li>Email: <a href="mailto:support@herbvian.com" class="footer-mail-link">support@herbvian.com</a></li>
+          <li>Location: 9117 Andrew Dr, Manassas Park, VA 2011</li>
         </ul>
 
-        <p class="footer-subtext mt-3"><strong>Customer Support</strong></p>
+        <p class="footer-subtext mt-3"><strong>Customer Support & WhatsApp</strong></p>
         <ul class="footer-bullet-list">
           <li>Email: <a href="mailto:support@herbvian.com" class="footer-mail-link">support@herbvian.com</a></li>
-          <li>Phone: <strong>+1 815-669-9699</strong></li>
+          <li>Phone / WhatsApp: <strong>+1 703-732-4825</strong></li>
         </ul>
         <p class="footer-subtext mt-3" style="font-style: italic; color: #BACDC0;">Operated by Herbvian</p>
       </div>
@@ -1183,6 +1806,8 @@
       <div class="footer-col">
         <h4 class="footer-heading">More Infor</h4>
         <ul class="footer-links">
+          <li><a href="#our-story" onclick="switchNav('our-story')">Our Story & Heritage</a></li>
+          <li><a href="#benefits" onclick="switchNav('benefits')">Product Benefits & Uses</a></li>
           <li><a href="#contact" onclick="switchNav('contact')">Contact Us</a></li>
           <li><a href="#track-order" onclick="switchNav('track-order')">Track Order</a></li>
           <li><a href="#" onclick="showCustomAlert('Free Worldwide Shipping on orders over $45. Standard transit time 3-7 days.'); return false;">Shipping Policy</a></li>
@@ -1575,6 +2200,33 @@
       </form>
     </div>
   </div>
+
+  <!-- Fixed Mobile Bottom Navigation Bar (App Experience) -->
+  <nav class="mobile-bottom-bar" id="mobileBottomBar" aria-label="Mobile Bottom Navigation">
+    <button class="bottom-bar-btn active" data-page="home" onclick="switchNav('home')">
+      <i class="fa-solid fa-house"></i>
+      <span>Home</span>
+    </button>
+    <button class="bottom-bar-btn" data-page="product" onclick="switchNav('product')">
+      <i class="fa-solid fa-spray-can-sparkles"></i>
+      <span>Shop</span>
+    </button>
+    <button class="bottom-bar-btn" data-page="benefits" onclick="switchNav('benefits')">
+      <i class="fa-solid fa-wand-magic-sparkles"></i>
+      <span>Benefits</span>
+    </button>
+    <button class="bottom-bar-btn" data-page="our-story" onclick="switchNav('our-story')">
+      <i class="fa-solid fa-leaf"></i>
+      <span>Our Story</span>
+    </button>
+    <button class="bottom-bar-btn cart-bottom-tab" onclick="openCartDrawer()" aria-label="View Shopping Bag">
+      <div class="bottom-cart-badge-wrap">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="bottom-cart-badge" id="bottomCartBadge">0</span>
+      </div>
+      <span>Cart</span>
+    </button>
+  </nav>
 
   <!-- Toast Notifications Container -->
   <div class="toast-container" id="toastContainer"></div>
